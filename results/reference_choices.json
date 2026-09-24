@@ -1,0 +1,49 @@
+{
+  "conflict_states": 2,
+  "fixed_choice_regions": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ]
+  ],
+  "history_states": 3,
+  "reference_observation": {
+    "trace": [],
+    "value": 0
+  },
+  "uniform_certificate": {
+    "greatest_region": null,
+    "obstruction": {
+      "block": 0,
+      "choice_rejections": [
+        {
+          "choice": 0,
+          "state": 2
+        },
+        {
+          "choice": 1,
+          "state": 1
+        }
+      ],
+      "deletion_witnesses": [
+        {
+          "choice": 1,
+          "removed_state": 1
+        },
+        {
+          "choice": 0,
+          "removed_state": 2
+        }
+      ],
+      "states": [
+        1,
+        2
+      ]
+    },
+    "policy": null
+  }
+}

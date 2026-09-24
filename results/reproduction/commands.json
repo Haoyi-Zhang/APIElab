@@ -1,0 +1,57 @@
+{
+  "absolute_working_paths_omitted": true,
+  "all_exit_codes": 0,
+  "commands": [
+    {
+      "command": [
+        "make"
+      ],
+      "exit_code": 0,
+      "label": "paper-build",
+      "outcome": "50 pages; final pass has 0 undefined citations/references and 0 overfull boxes",
+      "working_directory": "clean extracted full project paper/"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "label": "unit-tests",
+      "outcome": "45 tests passed",
+      "working_directory": "clean extracted standalone repository"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compatibility.reproduce",
+        "--output",
+        "FRESH_SEMANTIC_OUTPUT"
+      ],
+      "exit_code": 0,
+      "label": "semantic-reproduction",
+      "outcome": "13/13 deterministic files exact; example and boundary fixtures reexecuted",
+      "working_directory": "clean extracted standalone repository"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compatibility.reproduce_succinct",
+        "--output",
+        "FRESH_SUCCINCT_OUTPUT"
+      ],
+      "exit_code": 0,
+      "label": "succinct-reproduction",
+      "outcome": "7/7 deterministic files exact; 6,280 structure cases rechecked",
+      "working_directory": "clean extracted standalone repository"
+    }
+  ],
+  "measurement_note": "CPU, wall time, and RSS are environment-dependent and stored separately; only declared deterministic files are byte-compared."
+}

@@ -1,0 +1,9 @@
+{
+  "child_processes": 0,
+  "cpu_limit_seconds": 40,
+  "cpu_seconds": 18.053320446,
+  "peak_rss_kib": 93608,
+  "virtual_memory_limit_bytes": 805306368,
+  "wall_seconds": 18.056210292999822,
+  "workers": 1
+}

@@ -1,0 +1,10 @@
+{
+  "child_processes": 0,
+  "cpu_limit_seconds": 30,
+  "cpu_seconds": 2.612715912,
+  "measurement_scope": "single pilot process; includes mutations, independent oracles and output writing",
+  "peak_rss_kib": 114216,
+  "virtual_memory_limit_bytes": 805306368,
+  "wall_seconds": 2.6130826210001032,
+  "workers": 1
+}

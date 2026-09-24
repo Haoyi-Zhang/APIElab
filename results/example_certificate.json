@@ -1,0 +1,163 @@
+{
+  "case_id": "C005",
+  "region": [
+    0,
+    1
+  ],
+  "rows": [
+    {
+      "state": 0,
+      "input": 0,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "a"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "a"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "state": 0,
+      "input": 1,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "a"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "a"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "state": 1,
+      "input": 0,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "a"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "a"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "state": 1,
+      "input": 1,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "a"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "a"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "state": 2,
+      "input": 0,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "b"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "b"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    },
+    {
+      "state": 2,
+      "input": 1,
+      "outcome": {
+        "value": 0,
+        "trace": [
+          "b"
+        ],
+        "error": null
+      },
+      "calls": [
+        {
+          "api": "f",
+          "argument": 0,
+          "default_used": true,
+          "default_trace": [
+            "b"
+          ],
+          "body_trace": [],
+          "result": 0,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "counterexamples": [
+    {
+      "state": 2,
+      "input": 0
+    }
+  ],
+  "least_counterexample": {
+    "state": 2,
+    "input": 0
+  }
+}

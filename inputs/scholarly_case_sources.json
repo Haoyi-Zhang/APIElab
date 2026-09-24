@@ -1,0 +1,246 @@
+{
+  "cases": [
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S001",
+      "phenomenon": "removal and reintroduction: Gravity.getAbsoluteGravity",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S002",
+      "phenomenon": "removal and reintroduction: KeyEvent.getDeviceId",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S003",
+      "phenomenon": "removal and reintroduction: MotionEvent.getDeviceId",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S004",
+      "phenomenon": "removal and reintroduction: DatagramSocketImpl.getOption",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S005",
+      "phenomenon": "removal and reintroduction: DatagramSocketImpl.setOption",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S006",
+      "phenomenon": "removal and reintroduction: SocketImpl.getOption",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S007",
+      "phenomenon": "removal and reintroduction: SocketImpl.setOption",
+      "projection": "Three-state available/absent/available lifecycle with unchanged Boolean behavior.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S008",
+      "phenomenon": "unguarded use before introduction",
+      "projection": "Two-state introduction with the later state as reference.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S009",
+      "phenomenon": "SDK-level guard around an introduced API",
+      "projection": "Version guard selects a behavior-preserving fallback before introduction.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S010",
+      "phenomenon": "use after removal",
+      "projection": "Two-state removal makes an unguarded call fault.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S011",
+      "phenomenon": "availability guard around a removed API",
+      "projection": "Presence guard selects an observationally equal fallback after removal.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S012",
+      "phenomenon": "API introduced at a later platform level",
+      "projection": "Introduction boundary represented by one absent and one available state.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S013",
+      "phenomenon": "SDK_INT-style guard",
+      "projection": "Version guard exactly separates absent and available states.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S014",
+      "phenomenon": "behavior-change boundary outside lifecycle-only detection",
+      "projection": "Same availability and type, but a changed truth table; included as a stated scope boundary.",
+      "source_key": "li2018cid"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S015",
+      "phenomenon": "deleted method",
+      "projection": "Method deletion as an unavailable declaration in the later state.",
+      "source_key": "dagenais2009semdiff"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S016",
+      "phenomenon": "one-call replacement preserving behavior",
+      "projection": "Version-indexed elaboration switches from the deleted method to an equivalent replacement.",
+      "source_key": "dagenais2009semdiff"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S017",
+      "phenomenon": "suggested replacement with different behavior",
+      "projection": "Replacement remains type-correct but fails the stronger observational condition.",
+      "source_key": "dagenais2009semdiff"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S018",
+      "phenomenon": "one-to-many replacement sequence",
+      "projection": "Two replacement calls jointly preserve the reference result although each negates it.",
+      "source_key": "dagenais2009semdiff"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S019",
+      "phenomenon": "same signature with changed result",
+      "projection": "The declaration remains present and typed, but differs on the least distinguishing input.",
+      "source_key": "liu2021silent"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S020",
+      "phenomenon": "same result with changed event order",
+      "projection": "A trace-sensitive observation distinguishes APIs that return equal values.",
+      "source_key": "liu2021silent"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S021",
+      "phenomenon": "changed implicit default",
+      "projection": "Omitted-argument elaboration exposes a default-value change.",
+      "source_key": "liu2021silent"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S022",
+      "phenomenon": "context masks two local changes",
+      "projection": "Sequential composition is observationally stable although both component tables change.",
+      "source_key": "liu2021silent"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S023",
+      "phenomenon": "guarded platform-specific API availability",
+      "projection": "A presence guard abstracts a compatibility check across two platform states.",
+      "source_key": "wei2016fragmentation"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S024",
+      "phenomenon": "unguarded platform-specific API availability",
+      "projection": "The same history without a guard faults on the earlier platform state.",
+      "source_key": "wei2016fragmentation"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S025",
+      "phenomenon": "device-dependent behavior behind a stable signature",
+      "projection": "Two abstract platform states expose different behavior for an equally typed API.",
+      "source_key": "wei2016fragmentation"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S026",
+      "phenomenon": "state-aware adaptation for platform variation",
+      "projection": "A state guard and argument adapter restore the reference Boolean behavior.",
+      "source_key": "wei2016fragmentation"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S027",
+      "phenomenon": "new default enables omitted argument",
+      "projection": "The same call site becomes defined only after a default is introduced.",
+      "source_key": "fazzini2019update"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S028",
+      "phenomenon": "replacement preserves result and trace",
+      "projection": "Version-indexed replacement preserves both return value and event word.",
+      "source_key": "fazzini2019update"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S029",
+      "phenomenon": "replacement preserves value but changes effects",
+      "projection": "A return-only test would accept; trace refinement rejects the update.",
+      "source_key": "fazzini2019update"
+    },
+    {
+      "fidelity_limit": "Hand-authored Boolean projection of a reported evolution pattern; not a reproduction of source apps, bytecode, devices, or prevalence.",
+      "id": "S030",
+      "phenomenon": "multi-call update preserves context behavior",
+      "projection": "Whole-client equivalence holds even though independent component checks would reject.",
+      "source_key": "fazzini2019update"
+    }
+  ],
+  "sources": [
+    {
+      "key": "li2018cid",
+      "role": "API lifecycle, introduction/removal/reintroduction, and SDK-guard examples",
+      "title": "CiD: Automating the Detection of API-related Compatibility Issues in Android Apps",
+      "url": "https://orbilu.uni.lu/handle/10993/37890"
+    },
+    {
+      "key": "dagenais2009semdiff",
+      "role": "method/class deletion and replacement-call recommendations",
+      "title": "SemDiff: Analysis and Recommendation Support for API Evolution",
+      "url": "https://doi.org/10.1109/ICSE.2009.5070540"
+    },
+    {
+      "key": "liu2021silent",
+      "role": "same-signature behavioral evolution",
+      "title": "Identifying and Characterizing Silently-Evolved Methods in the Android API",
+      "url": "https://doi.org/10.1109/ICSE-SEIP52600.2021.00040"
+    },
+    {
+      "key": "wei2016fragmentation",
+      "role": "platform/device fragmentation and guarded compatibility",
+      "title": "Taming Android Fragmentation: Characterizing and Detecting Compatibility Issues for Android Apps",
+      "url": "https://doi.org/10.1145/2970276.2970312"
+    },
+    {
+      "key": "fazzini2019update",
+      "role": "API replacement and usage-update patterns",
+      "title": "Automated API-Usage Update for Android Apps",
+      "url": "https://doi.org/10.1145/3293882.3330571"
+    }
+  ]
+}

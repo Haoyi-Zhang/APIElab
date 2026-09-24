@@ -1,0 +1,171 @@
+[
+  {
+    "id": "C001",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Non-contiguous availability",
+    "region": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": "C002",
+    "least_counterexample": null,
+    "purpose": "Presence guard with a behavior-preserving fallback",
+    "region": [
+      0,
+      1,
+      2
+    ]
+  },
+  {
+    "id": "C003",
+    "least_counterexample": {
+      "input": 1,
+      "state": 1
+    },
+    "purpose": "Least failing input is one, not zero",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C004",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Equal effect rows, unequal event order",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C005",
+    "least_counterexample": {
+      "input": 0,
+      "state": 2
+    },
+    "purpose": "Fixed effectful defaults preserve semantic principality",
+    "region": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "C006",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Default-value change",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C007",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Absent required default is an error",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C008",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Equal effect rows, unequal event multiplicity",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C009",
+    "least_counterexample": null,
+    "purpose": "Two negations mask two isolated mismatches",
+    "region": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "C010",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Initial-input-only local checks are unsound",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C011",
+    "least_counterexample": null,
+    "purpose": "Version guard bypasses unavailable API",
+    "region": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "C012",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Observable prefix is retained before a later error",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C013",
+    "least_counterexample": {
+      "input": 0,
+      "state": 1
+    },
+    "purpose": "Negation expressions and input-dependent branches",
+    "region": [
+      0
+    ]
+  },
+  {
+    "id": "C014",
+    "least_counterexample": null,
+    "purpose": "Unreachable unavailable call does not make execution fail",
+    "region": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "C015",
+    "least_counterexample": null,
+    "purpose": "Explicit argument does not evaluate an unused default",
+    "region": [
+      0,
+      1
+    ]
+  },
+  {
+    "id": "C016",
+    "least_counterexample": {
+      "input": 1,
+      "state": 0
+    },
+    "purpose": "Reference may occur after the earliest bad version",
+    "region": [
+      1
+    ]
+  }
+]

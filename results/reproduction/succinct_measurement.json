@@ -1,0 +1,8 @@
+{
+  "child_processes": 0,
+  "cpu_seconds": 18.832602024,
+  "peak_rss_kib": 123308,
+  "scope": "full regeneration, mutations, structure replay and exact comparison",
+  "wall_seconds": 18.84222422799985,
+  "workers": 1
+}

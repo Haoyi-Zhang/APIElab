@@ -1,0 +1,1425 @@
+{
+  "id": "B001",
+  "reference": 0,
+  "inputs": [
+    0,
+    1
+  ],
+  "trace_limit": 20,
+  "history": [
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": [
+              "a"
+            ]
+          },
+          {
+            "value": 1,
+            "trace": [
+              "a"
+            ]
+          }
+        ]
+      },
+      "g": {
+        "type": "Bool->Bool",
+        "effects": [],
+        "default": null,
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    }
+  ],
+  "client": {
+    "op": "let",
+    "name": "y0",
+    "api": "f",
+    "arg": {
+      "var": "x"
+    },
+    "body": {
+      "op": "let",
+      "name": "y1",
+      "api": "f",
+      "arg": {
+        "var": "y0"
+      },
+      "body": {
+        "op": "let",
+        "name": "y2",
+        "api": "f",
+        "arg": {
+          "var": "y1"
+        },
+        "body": {
+          "op": "let",
+          "name": "y3",
+          "api": "f",
+          "arg": {
+            "var": "y2"
+          },
+          "body": {
+            "op": "let",
+            "name": "y4",
+            "api": "f",
+            "arg": {
+              "var": "y3"
+            },
+            "body": {
+              "op": "let",
+              "name": "y5",
+              "api": "f",
+              "arg": {
+                "var": "y4"
+              },
+              "body": {
+                "op": "let",
+                "name": "y6",
+                "api": "f",
+                "arg": {
+                  "var": "y5"
+                },
+                "body": {
+                  "op": "let",
+                  "name": "y7",
+                  "api": "f",
+                  "arg": {
+                    "var": "y6"
+                  },
+                  "body": {
+                    "op": "let",
+                    "name": "y8",
+                    "api": "f",
+                    "arg": {
+                      "var": "y7"
+                    },
+                    "body": {
+                      "op": "let",
+                      "name": "y9",
+                      "api": "f",
+                      "arg": {
+                        "var": "y8"
+                      },
+                      "body": {
+                        "op": "let",
+                        "name": "y10",
+                        "api": "f",
+                        "arg": {
+                          "var": "y9"
+                        },
+                        "body": {
+                          "op": "let",
+                          "name": "y11",
+                          "api": "f",
+                          "arg": {
+                            "var": "y10"
+                          },
+                          "body": {
+                            "op": "let",
+                            "name": "y12",
+                            "api": "f",
+                            "arg": {
+                              "var": "y11"
+                            },
+                            "body": {
+                              "op": "let",
+                              "name": "y13",
+                              "api": "f",
+                              "arg": {
+                                "var": "y12"
+                              },
+                              "body": {
+                                "op": "let",
+                                "name": "y14",
+                                "api": "f",
+                                "arg": {
+                                  "var": "y13"
+                                },
+                                "body": {
+                                  "op": "let",
+                                  "name": "y15",
+                                  "api": "f",
+                                  "arg": {
+                                    "var": "y14"
+                                  },
+                                  "body": {
+                                    "op": "let",
+                                    "name": "y16",
+                                    "api": "f",
+                                    "arg": {
+                                      "var": "y15"
+                                    },
+                                    "body": {
+                                      "op": "let",
+                                      "name": "y17",
+                                      "api": "f",
+                                      "arg": {
+                                        "var": "y16"
+                                      },
+                                      "body": {
+                                        "op": "let",
+                                        "name": "y18",
+                                        "api": "f",
+                                        "arg": {
+                                          "var": "y17"
+                                        },
+                                        "body": {
+                                          "op": "let",
+                                          "name": "y19",
+                                          "api": "f",
+                                          "arg": {
+                                            "var": "y18"
+                                          },
+                                          "body": {
+                                            "op": "let",
+                                            "name": "y20",
+                                            "api": "g",
+                                            "arg": {
+                                              "var": "y19"
+                                            },
+                                            "body": {
+                                              "op": "let",
+                                              "name": "y21",
+                                              "api": "g",
+                                              "arg": {
+                                                "var": "y20"
+                                              },
+                                              "body": {
+                                                "op": "let",
+                                                "name": "y22",
+                                                "api": "g",
+                                                "arg": {
+                                                  "var": "y21"
+                                                },
+                                                "body": {
+                                                  "op": "let",
+                                                  "name": "y23",
+                                                  "api": "g",
+                                                  "arg": {
+                                                    "var": "y22"
+                                                  },
+                                                  "body": {
+                                                    "op": "return",
+                                                    "value": {
+                                                      "var": "y23"
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

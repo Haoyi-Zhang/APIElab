@@ -1,0 +1,36 @@
+{
+  "all_required_commands_exit_zero": true,
+  "archive_roots": {
+    "full": "evolution-parametric-compatibility-proofs-api-call-sites/",
+    "standalone": "evolution-parametric-compatibility/"
+  },
+  "archives": {
+    "full": "evolution-parametric-compatibility-proofs-api-call-sites.zip",
+    "standalone": "evolution-parametric-compatibility.zip"
+  },
+  "artifact": {
+    "semantic_exact_matches": 13,
+    "semantic_expected_files": 13,
+    "structure_cases": 6280,
+    "succinct_exact_matches": 7,
+    "succinct_expected_files": 7,
+    "unit_tests_passed": 45,
+    "unit_tests_run": 45
+  },
+  "full_project_top_level": [
+    "CURRENT-STATE.md",
+    "artifact",
+    "paper",
+    "research-plan.md"
+  ],
+  "paper": {
+    "build_exit_code": 0,
+    "encrypted": false,
+    "overfull_boxes_final_pass": 0,
+    "pages": 50,
+    "render_source": "paper/main.pdf",
+    "undefined_citations_final_pass": 0,
+    "undefined_references_final_pass": 0
+  },
+  "scope": "verification performed after extracting the delivered full-project and standalone archives into fresh directories; self-audit, not independent review"
+}

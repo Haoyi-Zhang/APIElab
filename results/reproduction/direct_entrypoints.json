@@ -1,0 +1,39 @@
+{
+  "all_exit_codes": 0,
+  "circuit_files_exact": [
+    "cases.jsonl",
+    "circuits.jsonl",
+    "certificates.jsonl",
+    "per_case.csv",
+    "summary.json",
+    "negative_controls.json",
+    "structure.jsonl"
+  ],
+  "fixtures": {
+    "boundary_counts_exact": true,
+    "reexecuted": [
+      "example",
+      "boundary"
+    ]
+  },
+  "semantic_files_exact": [
+    "inputs/control_expectations.json",
+    "inputs/scholarly_case_sources.json",
+    "inputs/scholarly_expectations.json",
+    "inputs/semantic_cases.jsonl",
+    "inputs/uniform_problems.jsonl",
+    "results/composition.jsonl",
+    "results/guard_queries.jsonl",
+    "results/observation_sensitivity.json",
+    "results/semantic_certificates.jsonl",
+    "results/semantic_results.csv",
+    "results/summary.json",
+    "results/uniform_certificates.jsonl",
+    "results/uniform_results.jsonl"
+  ],
+  "structure": {
+    "checked": 6280,
+    "two_maxima_with_two_state_core": 3140,
+    "unique_maximum": 3140
+  }
+}

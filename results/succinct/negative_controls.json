@@ -1,0 +1,29 @@
+{
+  "anchor_omission": {
+    "correct": false,
+    "input": {
+      "id": "N001",
+      "post_table": 0,
+      "quantified": false,
+      "queries": [
+        1
+      ]
+    },
+    "without_anchor": true
+  },
+  "quantifier_swap": {
+    "exists_y_forall_x": false,
+    "forall_x_exists_y": true,
+    "query_table": 9
+  },
+  "weight_one": {
+    "actual_postprocessing": true,
+    "input": {
+      "post_table": 2,
+      "q": 1,
+      "truth_vector": 1
+    },
+    "maximum_score": 1,
+    "parity_prediction": false
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "boundary-check": {
+    "certificate_accepted": true,
+    "counts": {
+      "ast_nodes": 50,
+      "call_sites": 24,
+      "certificate_nodes": 1600,
+      "checker_steps": 4736,
+      "declarations": 64,
+      "executions": 64,
+      "states": 32
+    }
+  },
+  "example-check": {
+    "certificate_accepted": true,
+    "counts": {
+      "ast_nodes": 3,
+      "call_sites": 1,
+      "certificate_nodes": 12,
+      "checker_steps": 24,
+      "declarations": 3,
+      "executions": 6,
+      "states": 3
+    }
+  },
+  "example-fresh-check": {
+    "certificate_accepted": true,
+    "counts": {
+      "ast_nodes": 3,
+      "call_sites": 1,
+      "certificate_nodes": 12,
+      "checker_steps": 24,
+      "declarations": 3,
+      "executions": 6,
+      "states": 3
+    }
+  },
+  "example-infer": {
+    "accepted_input": true,
+    "counts": {
+      "ast_nodes": 3,
+      "call_sites": 1,
+      "certificate_nodes": 12,
+      "declarations": 3,
+      "evaluation_steps": 24,
+      "executions": 6,
+      "max_trace": 1,
+      "states": 3
+    }
+  }
+}

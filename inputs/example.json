@@ -1,0 +1,95 @@
+{
+  "id": "C005",
+  "reference": 0,
+  "inputs": [
+    0,
+    1
+  ],
+  "trace_limit": 20,
+  "history": [
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": {
+          "value": 0,
+          "trace": [
+            "a"
+          ]
+        },
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "a"
+        ],
+        "default": {
+          "value": 0,
+          "trace": [
+            "a"
+          ]
+        },
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    },
+    {
+      "f": {
+        "type": "Bool->Bool",
+        "effects": [
+          "b"
+        ],
+        "default": {
+          "value": 0,
+          "trace": [
+            "b"
+          ]
+        },
+        "table": [
+          {
+            "value": 0,
+            "trace": []
+          },
+          {
+            "value": 1,
+            "trace": []
+          }
+        ]
+      }
+    }
+  ],
+  "client": {
+    "op": "let",
+    "name": "y",
+    "api": "f",
+    "arg": null,
+    "body": {
+      "op": "return",
+      "value": {
+        "var": "y"
+      }
+    }
+  }
+}

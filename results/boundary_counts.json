@@ -1,0 +1,21 @@
+{
+  "producer": {
+    "ast_nodes": 50,
+    "call_sites": 24,
+    "declarations": 64,
+    "states": 32,
+    "evaluation_steps": 4736,
+    "certificate_nodes": 1600,
+    "executions": 64,
+    "max_trace": 20
+  },
+  "checker": {
+    "ast_nodes": 50,
+    "call_sites": 24,
+    "declarations": 64,
+    "states": 32,
+    "checker_steps": 4736,
+    "certificate_nodes": 1600,
+    "executions": 64
+  }
+}

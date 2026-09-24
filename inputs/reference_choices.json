@@ -1,0 +1,190 @@
+{
+  "cases": [
+    {
+      "client": {
+        "api": "f",
+        "arg": null,
+        "body": {
+          "op": "return",
+          "value": {
+            "var": "y"
+          }
+        },
+        "name": "y",
+        "op": "let"
+      },
+      "history": [
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 0
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 0
+              },
+              {
+                "trace": [],
+                "value": 0
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        },
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 0
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 0
+              },
+              {
+                "trace": [],
+                "value": 1
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        },
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 0
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 1
+              },
+              {
+                "trace": [],
+                "value": 0
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        }
+      ],
+      "id": "RChoice0",
+      "inputs": [
+        0,
+        1
+      ],
+      "reference": 0,
+      "trace_limit": 20
+    },
+    {
+      "client": {
+        "api": "f",
+        "arg": null,
+        "body": {
+          "op": "return",
+          "value": {
+            "var": "y"
+          }
+        },
+        "name": "y",
+        "op": "let"
+      },
+      "history": [
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 1
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 0
+              },
+              {
+                "trace": [],
+                "value": 0
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        },
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 1
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 0
+              },
+              {
+                "trace": [],
+                "value": 1
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        },
+        {
+          "f": {
+            "default": {
+              "trace": [],
+              "value": 1
+            },
+            "effects": [],
+            "table": [
+              {
+                "trace": [],
+                "value": 1
+              },
+              {
+                "trace": [],
+                "value": 0
+              }
+            ],
+            "type": "Bool->Bool"
+          }
+        }
+      ],
+      "id": "RChoice1",
+      "inputs": [
+        0,
+        1
+      ],
+      "reference": 0,
+      "trace_limit": 20
+    }
+  ],
+  "matrix": {
+    "blocks": [
+      0,
+      0,
+      0
+    ],
+    "choices": 2,
+    "safe_choices": [
+      [
+        0,
+        1
+      ],
+      [
+        0
+      ],
+      [
+        1
+      ]
+    ]
+  }
+}
