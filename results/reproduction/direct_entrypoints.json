@@ -9,6 +9,11 @@
     "negative_controls.json",
     "structure.jsonl"
   ],
+  "cli_entrypoint_checks": [
+    "python -m compatibility.cli --help",
+    "python -m compatibility.reproduce --help",
+    "python -m compatibility.reproduce_succinct --help"
+  ],
   "fixtures": {
     "boundary_counts_exact": true,
     "reexecuted": [
@@ -16,6 +21,7 @@
       "boundary"
     ]
   },
+  "scope_note": "Full campaigns are executed by the reproduction entrypoints. Unit tests call the underlying functions directly and use separate lightweight subprocesses only for CLI parsing/exit behavior.",
   "semantic_files_exact": [
     "inputs/control_expectations.json",
     "inputs/scholarly_case_sources.json",
@@ -25,6 +31,7 @@
     "results/composition.jsonl",
     "results/guard_queries.jsonl",
     "results/observation_sensitivity.json",
+    "results/partition_refinement.jsonl",
     "results/semantic_certificates.jsonl",
     "results/semantic_results.csv",
     "results/summary.json",

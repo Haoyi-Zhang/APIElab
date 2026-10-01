@@ -18,12 +18,17 @@ from copy import deepcopy
 from itertools import product
 from pathlib import Path
 from .cases import (history_cases, effect_history_cases, controls,
-                    truth_table_oracle, effect_oracle, uniform_problems)
+                    truth_table_oracle, effect_oracle, uniform_problems,
+                    TRUTH_TEMPLATE_NAMES, EFFECT_TEMPLATE_NAMES)
 from .scholarly import scholarly_cases, source_records
 from .infer import infer
+from .model import validate
 from .replay import check, Rejected
 from .uniform import solve
-from .uniform_check import check as uniform_check
+from .uniform_check import (check as uniform_check, enumerate_supports,
+                            is_refinement)
+from .guards import (greatest_sound_by_endpoints, component_count,
+                     component_oracle, endpoint_union_masks)
 
 
 def bounds():
@@ -66,6 +71,19 @@ def syntactic_apis(term):
         if t['op']=='let': names.add(t['api']); pending.append(t['body'])
         elif t['op'] in ('if','if_present','if_version'): pending.extend([t['then'],t['else']])
     return names
+
+
+def contains_term_op(term, wanted):
+    pending=[term]
+    while pending:
+        current=pending.pop()
+        if current['op'] == wanted:
+            return True
+        if current['op'] == 'let':
+            pending.append(current['body'])
+        elif current['op'] in ('if','if_present','if_version'):
+            pending.extend([current['then'],current['else']])
+    return False
 
 
 def predictions(case, cert):
@@ -119,11 +137,15 @@ def trace_sensitivity(case, cert):
     return {'all_events_erased':region('all_events'), 'default_events_erased':region('defaults')}
 
 
-def run(output):
-    bounds()
-    begin_wall=time.monotonic(); begin_cpu=time.process_time()
+def run(output, *, inject_failure_after_create=False):
     output=Path(output)
     output.mkdir(parents=True,exist_ok=False)
+    # Failed runs deliberately retain only the fresh path they exclusively created.
+    # Existing paths are rejected by mkdir and are never removed or overwritten.
+    if inject_failure_after_create:
+        raise RuntimeError('injected failure after exclusive output creation')
+    bounds()
+    begin_wall=time.monotonic(); begin_cpu=time.process_time()
     inp=output/'inputs'; res=output/'results'
     inp.mkdir(parents=True,exist_ok=True); res.mkdir(parents=True,exist_ok=True)
     truth_family=list(history_cases())
@@ -136,6 +158,10 @@ def run(output):
     assert len(truth_family)==600 and len(effect_family)==600
     assert len(generated)==1200 and len(scholarly)==30 and len(campaign)==1230
     assert len(special)==16 and len(cases)==1246
+    assert all(not contains_term_op(case['client'],'if_version') for case in truth_family)
+    assert max(validate(case)['call_sites'] for case in truth_family) == 2
+    assert max(validate(case)['call_sites'] for case in effect_family) == 2
+    assert max(validate(case)['call_sites'] for case,_,_ in scholarly) == 3
     write_lines(inp/'semantic_cases.jsonl',cases)
     write_json(inp/'scholarly_case_sources.json',
                {'sources':source_records(),'cases':[m for _,_,m in scholarly]})
@@ -183,7 +209,20 @@ def run(output):
         family=('generated_truth_table' if index<600 else
                 'generated_effect_default' if index<1200 else
                 'scholarly_projection' if index<1230 else 'regression_control')
+        if index < 600:
+            template_index=index % 6
+            template_name=TRUTH_TEMPLATE_NAMES[template_index]
+        elif index < 1200:
+            template_index=(index-600) % 6
+            template_name=EFFECT_TEMPLATE_NAMES[template_index]
+        else:
+            template_index=''
+            template_name=''
         raw.append(dict(id=case['id'],family=family,
+                        template_index=(template_index+1 if template_index != '' else ''),template_name=template_name,
+                        reference_state=case['reference'],input_count=len(case['inputs']),
+                        outcome_rows=len(cert['rows']),
+                        has_version_guard=int(contains_term_op(case['client'],'if_version')),
                         region=';'.join(map(str,cert['region'])),
                         least_state='' if cert['least_counterexample'] is None else cert['least_counterexample']['state'],
                         least_input='' if cert['least_counterexample'] is None else cert['least_counterexample']['input'],
@@ -216,6 +255,30 @@ def run(output):
                             'obstruction_size':size,**checked})
     write_lines(res/'uniform_certificates.jsonl',uniform_certs)
     write_lines(res/'uniform_results.jsonl',uniform_raw)
+
+    # Partition-refinement evidence is distinct from event-erasure sensitivity.
+    grouped={}
+    for problem in uniform_inputs:
+        key=(problem['choices'],tuple(tuple(row) for row in problem['safe_choices']))
+        grouped.setdefault(key,[]).append(problem)
+    refinement_rows=[]; refinement_summary=Counter()
+    for (choices,_),problems in grouped.items():
+        for coarse in problems:
+            coarse_supports=enumerate_supports(coarse)
+            for fine in problems:
+                if fine['blocks'] == coarse['blocks'] or not is_refinement(fine['blocks'],coarse['blocks']):
+                    continue
+                fine_supports=enumerate_supports(fine)
+                missing=sorted(coarse_supports-fine_supports)
+                assert not missing
+                refinement_summary['strict_pairs']+=1
+                refinement_summary['coarse_supports_checked']+=len(coarse_supports)
+                refinement_rows.append({'states':len(coarse['blocks']),'choices':choices,
+                    'coarse_blocks':coarse['blocks'],'fine_blocks':fine['blocks'],
+                    'coarse_distinct_supports':len(coarse_supports),
+                    'fine_distinct_supports':len(fine_supports),'missing_coarse_supports':[]})
+    write_lines(res/'partition_refinement.jsonl',refinement_rows)
+
     composition=[]; composition_summary=Counter()
     functions=[tuple((code>>x)&1 for x in (0,1)) for code in range(4)]
     for f0,f1,g0,g1 in product(functions,repeat=4):
@@ -233,17 +296,17 @@ def run(output):
     assert len(composition)==256
     write_lines(res/'composition.jsonl',composition)
     guard=[]; guard_summary=Counter()
-    def components(mask,n):
-        return sum(bool(mask&(1<<v)) and (v==0 or not(mask&(1<<(v-1)))) for v in range(n))
     for n in range(1,7):
         for safe in range(1<<n):
             for k in (1,2,3):
-                candidates=[m for m in range(1<<n) if m & ~safe==0 and components(m,n)<=k]
-                greatest=next((m for m in candidates if all(q & ~m==0 for q in candidates)),None)
-                theorem=(safe if components(safe,n)<=k else None)
+                greatest=greatest_sound_by_endpoints(safe,n,k)
+                theorem=component_oracle(safe,n,k)
                 assert greatest==theorem
                 guard_summary['greatest_exists' if greatest is not None else 'no_greatest']+=1
-                guard.append({'states':n,'safe_mask':safe,'interval_limit':k,'components':components(safe,n),
+                guard_summary['endpoint_candidate_masks']+=len(endpoint_union_masks(n,k))
+                guard.append({'states':n,'safe_mask':safe,'interval_limit':k,
+                              'components':component_count(safe,n),
+                              'endpoint_candidate_masks':len(endpoint_union_masks(n,k)),
                               'greatest_mask':greatest})
     assert len(guard)==378
     write_lines(res/'guard_queries.jsonl',guard)
@@ -251,11 +314,20 @@ def run(output):
                          'generated_effect_default_cases':600,
                          'generated_cases':1200,'scholarly_illustrations':30,
                          'campaign_cases':1230,'regression_controls':16,'total_executed':1246,
+                         'family_contract':{
+                             'truth_table':{'product':[4,5,5,6],
+                                 'templates':list(TRUTH_TEMPLATE_NAMES),
+                                 'version_guard_templates':0,'maximum_call_sites':2},
+                             'default_effect':{'product':[4,5,5,6],
+                                 'templates':list(EFFECT_TEMPLATE_NAMES),
+                                 'maximum_call_sites':2},
+                             'scholarly':{'cases':30,'maximum_call_sites':3}},
                          'oracle_mismatches':0,'mutation_rejections':sum(mutate.values()),
                          'mutation_categories':dict(mutate),'totals':dict(steps),'including_mutations':dict(replay_accounting),'measured_dimensions':dict(maxima)},
              'baselines':dict(base),
              'uniform':{'problems':3102,'oracle_mismatches':0,**dict(un),
                         'mutation_rejections':sum(uniform_mutation.values()),'mutation_categories':dict(uniform_mutation)},
+             'partition_refinement':{'oracle_mismatches':0,**dict(refinement_summary)},
              'composition':{'quadruples':256,**dict(composition_summary)},
              'guards':{'queries':378,'oracle_mismatches':0,**dict(guard_summary)},
              'scope':{'general_mechanized_proofs':0,'scholarly_cases':30,'device_runs':0,

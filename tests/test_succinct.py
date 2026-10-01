@@ -1,7 +1,7 @@
 """Strict finite-circuit admission and construction tests."""
 import unittest
 from copy import deepcopy
-from compatibility.succinct import construct,scalar_certificate
+from compatibility.succinct import construct,scalar_certificate,evaluate_nodes
 from compatibility.succinct_check import check,admit,Rejected
 from compatibility.succinct_campaign import oracle
 
@@ -52,5 +52,24 @@ class CircuitTests(unittest.TestCase):
         self.assertFalse(scalar_certificate(construct(c))['greatest_exists'])
         c['post_table']=3
         self.assertTrue(scalar_certificate(construct(c))['greatest_exists'])
+
+    def test_fixed_selection_precedes_universal_input(self):
+        rows=[{'x':x,'C1':x,'C2':1-x} for x in (0,1)]
+        u=sum(all(row[name] for row in rows) for name in ('C1','C2'))
+        s=max(sum(all(row[name] for row in rows) for name in ('C1','C2')) for _a in (0,1))
+        self.assertEqual((u,s),(0,0))
+
+    def test_threshold_sentinel_and_endpoint_supports(self):
+        for q in (1,2):
+            cases=[({'id':f'L{q}','quantified':False,'queries':[0]*q,'post_table':1},0),
+                   ({'id':f'H{q}','quantified':False,'queries':[1]*q,'post_table':0},2*q+1)]
+            for case,k in cases:
+                circuit,layout=construct(case,with_layout=True)
+                self.assertEqual(len(circuit['outputs']),2*q+3)
+                self.assertTrue(all(evaluate_nodes(circuit,a,0)[layout['sentinel']]==0
+                                    for a in range(1<<circuit['a_bits'])))
+                proof=scalar_certificate(circuit)
+                self.assertEqual(proof['support'],list(range(k+2)))
+                self.assertEqual(proof['greatest_exists'],k%2==0)
 
 if __name__=='__main__':unittest.main()

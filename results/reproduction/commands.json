@@ -1,6 +1,7 @@
 {
   "absolute_working_paths_omitted": true,
   "all_exit_codes": 0,
+  "candidate_note": "These records were measured from a clean release candidate. Recording the JSON/CSV audit evidence does not alter code, paper, fixed inputs, or scientific results; the packaged final archive is checked once more externally.",
   "commands": [
     {
       "command": [
@@ -23,7 +24,7 @@
       ],
       "exit_code": 0,
       "label": "unit-tests",
-      "outcome": "45 tests passed",
+      "outcome": "57 tests passed",
       "working_directory": "clean extracted standalone repository"
     },
     {
@@ -36,7 +37,7 @@
       ],
       "exit_code": 0,
       "label": "semantic-reproduction",
-      "outcome": "13/13 deterministic files exact; example and boundary fixtures reexecuted",
+      "outcome": "14/14 deterministic files exact; example and boundary fixtures reexecuted",
       "working_directory": "clean extracted standalone repository"
     },
     {
@@ -50,6 +51,33 @@
       "exit_code": 0,
       "label": "succinct-reproduction",
       "outcome": "7/7 deterministic files exact; 6,280 structure cases rechecked",
+      "working_directory": "clean extracted standalone repository"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "CASE",
+        "CERTIFICATE"
+      ],
+      "exit_code": 0,
+      "label": "direct-semantic-fixtures",
+      "outcome": "example and 32-state boundary certificates accepted; fresh example certificate produced with exclusive creation and rechecked",
+      "working_directory": "clean extracted standalone repository"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "compatibility.structure_check",
+        "--directory",
+        "results/succinct"
+      ],
+      "exit_code": 0,
+      "label": "direct-structure-check",
+      "outcome": "6,280 structures checked; 3,140 unique maximum and 3,140 two-maxima/two-state-core cases",
       "working_directory": "clean extracted standalone repository"
     }
   ],

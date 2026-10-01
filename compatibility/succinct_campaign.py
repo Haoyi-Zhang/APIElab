@@ -16,7 +16,7 @@ import os
 from pathlib import Path
 import resource
 import time
-from .succinct import instances, construct, scalar_certificate
+from .succinct import instances, construct, scalar_certificate, evaluate_nodes
 from .succinct_check import certificate, check, Rejected
 
 
@@ -43,9 +43,13 @@ def oracle(case):
     return b,k,bool((case['post_table']>>b)&1),supports
 
 
-def run(output:Path):
+def run(output:Path, *, inject_failure_after_create=False):
     output=Path(output)
     output.mkdir(parents=True,exist_ok=False)
+    # A failed run retains the fresh path it exclusively created; existing paths
+    # are rejected and are never removed or overwritten.
+    if inject_failure_after_create:
+        raise RuntimeError('injected failure after exclusive output creation')
     if hasattr(os,'sched_getaffinity'):
         os.sched_setaffinity(0,{min(os.sched_getaffinity(0))})
     resource.setrlimit(resource.RLIMIT_AS,(768*1024*1024,768*1024*1024))
@@ -107,11 +111,44 @@ def run(output:Path):
     ea=any(all(y==x for x in (0,1)) for y in (0,1))
     ae=all(any(y==x for y in (0,1)) for x in (0,1))
     assert not ea and ae
+
+    # Fixed selections precede the universal runtime input.  C1=x and
+    # C2=not x are each false under exists-witness/forall-input semantics, so
+    # both the individually viable count u and shared-choice maximum s are zero.
+    c1=lambda x: x
+    c2=lambda x: 1-x
+    fixed_rows=[{'x':x,'C1':c1(x),'C2':c2(x)} for x in (0,1)]
+    u=sum(all(row[name] for row in fixed_rows) for name in ('C1','C2'))
+    s=max(sum(all(row[name] for row in fixed_rows) for name in ('C1','C2')) for _a in (0,1))
+    assert (u,s)==(0,0)
+
+    boundary=[]
+    for q in (1,2):
+        for label,case,wanted in (
+            ('minimum',{'id':f'B{q}L','quantified':False,'queries':[0]*q,'post_table':1},0),
+            ('maximum',{'id':f'B{q}H','quantified':False,'queries':[1]*q,'post_table':0},2*q+1)):
+            circuit,layout=construct(case,with_layout=True)
+            b,k,expected,_=oracle(case)
+            assert k==wanted and len(circuit['outputs'])==2*q+3
+            assert all(evaluate_nodes(circuit,a,0)[layout['sentinel']]==0
+                       for a in range(1<<circuit['a_bits']))
+            proof=scalar_certificate(circuit)
+            assert proof['support']==list(range(k+2))
+            assert proof['greatest_exists']==expected==(k%2==0)
+            boundary.append({'q':q,'endpoint':label,'oracle_answers':b,
+                             'K':k,'output_count':len(circuit['outputs']),
+                             'sentinel':f'T{2*q+2}','sentinel_always_false':True,
+                             'support':proof['support'],'greatest_exists':expected})
+
     negative={'anchor_omission':{'input':anchor_case,'correct':anchored_answer,'without_anchor':omitted_answer},
               'weight_one':{'input':weight_one_case,'actual_postprocessing':True,'maximum_score':k1,'parity_prediction':False},
-              'quantifier_swap':{'query_table':9,'exists_y_forall_x':ea,'forall_x_exists_y':ae}}
+              'quantifier_swap':{'query_table':9,'exists_y_forall_x':ea,'forall_x_exists_y':ae},
+              'fixed_selection_truth_table':{'formula_order':'exists choice,selection; forall input',
+                  'C1':'x','C2':'not x','rows':fixed_rows,'u':u,'s':s},
+              'construction_boundaries':boundary}
     summary={'cases':6280,'counts':dict(counts),'checker_including_three_mutations_per_case':accounting,
              'maxima':dict(maxima),'oracle_mismatches':0,'negative_controls':3,
+             'construction_boundary_checks':len(boundary),'fixed_selection_truth_table':{'u':u,'s':s},
              'scope':'exhaustive stated truth-table families; scalar whole-policy enumeration and independent truth-vector checks; not a mechanized asymptotic proof'}
     measurement={'cpu_seconds':time.process_time()-start_cpu,'wall_seconds':time.monotonic()-start_wall,
                  'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,'workers':1,'child_processes':0,

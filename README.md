@@ -6,7 +6,7 @@ The repository is complete for the declared bounded evidence. It is not a proof-
 
 ## Reproduce from a clean extraction
 
-Use Python 3.10 or newer. No third-party package, network access, GPU, solver, model API, paper directory, or external service is required.
+Use Python 3.10 or newer on a Linux/Unix-like system. The runners use the standard-library `resource` module for CPU/address-space/RSS controls and have not been validated on Windows. No third-party package, network access, GPU, solver, model API, paper directory, or external service is required.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -14,12 +14,12 @@ python -m compatibility.reproduce --output /tmp/epc-semantic-reproduction
 python -m compatibility.reproduce_succinct --output /tmp/epc-circuit-reproduction
 ```
 
-The two output directories must not already exist. The wrappers use exclusive creation, regenerate the frozen families, invoke direct entry points, compare every declared deterministic file byte for byte, and remove only a directory they created if a failure occurs.
+The two output directories must not already exist. The public commands exercise CLI wrappers, which call the campaign functions in the same Python process. Unit tests also call those functions directly and separately check CLI argument parsing. Exclusive creation prevents stale output from being reused. An existing path is never modified; if a fresh run fails after creation, its fresh path and any partial diagnostic output are retained rather than silently removed.
 
 Expected completion conditions:
 
-- **45 tests** pass;
-- semantic reproduction reports **13/13 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
+- **57 tests** pass;
+- semantic reproduction reports **14/14 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
 - succinct reproduction reports **7/7 exact file matches** and rechecks all **6,280** structure certificates.
 
 Timing and maximum resident memory are recorded but intentionally excluded from byte equality.
@@ -36,7 +36,7 @@ python -m compatibility.structure_check --directory results/succinct
 
 The base language has Boolean values and loop-free terms: return, calls with explicit or omitted arguments, lexical `let`, Boolean branches, presence guards, and version-threshold guards. Every declaration supplies exact rows for the two Boolean inputs, optional fixed-default behavior, and an allowed effect-label set. Outcomes are errors or a Boolean result paired with an ordered word over two modeled event labels. Missing declarations/defaults are explicit errors.
 
-The reference state must succeed on all admitted inputs. A version is fixed-client compatible exactly when every input produces the same successful result and event word as the fixed reference. Uniform elaboration separately supplies a finite choice relation and an observation partition; versions in one partition block must share a choice. The compact extension represents compatibility predicates as acyclic total Boolean circuits and keeps the quantifier order `exists common choice, for all runtime inputs`.
+The reference state must succeed on all admitted inputs. A version is fixed-client compatible exactly when every input produces the same successful result and event word as the fixed reference. Candidate-side `missing_api` and `missing_default` outcomes are incompatibility witnesses and retain prior event prefixes; malformed inputs, reference faults, and cap violations yield no conclusion. Uniform elaboration separately supplies a finite choice relation and an observation partition; versions in one partition block must share a choice. The compact extension represents compatibility predicates as acyclic total Boolean circuits and keeps the quantifier order `exists common choice, for all runtime inputs`.
 
 Admission caps are 32 states, 64 declarations, 24 call sites, 256 syntax nodes, depth 40, trace length 20, and 6,000 certificate nodes. Cap violations yield no compatibility conclusion.
 
@@ -44,9 +44,9 @@ Admission caps are 32 states, 64 declarations, 24 call sites, 256 syntax nodes, 
 
 | Family | Exact scope | Result |
 |---|---|---|
-| Truth-table histories | 600 exhaustive cases in the stated 4×5×5×6 grammar | zero oracle mismatches |
-| Default/effect histories | 600 exhaustive cases in the second frozen grammar | zero oracle mismatches |
-| Scholarly projections | 30 hand-authored source-mapped Boolean illustrations | zero oracle mismatches; not source reproductions |
+| Truth-table histories | 4×5×5×6 cases; six named clients, no numerical version guard, at most two calls | zero oracle mismatches |
+| Default/effect histories | 4×5×5×6 cases; six named clients, at most two calls | zero oracle mismatches |
+| Scholarly projections | 30 hand-authored source-mapped Boolean illustrations; may contain three calls | zero oracle mismatches; not source reproductions |
 | Regression controls | 16 authored controls outside the 1,230 denominator | all expected outcomes |
 | Uniform choice | 3,102 matrices/partitions; 31,538 policies | 2,548 positive, 554 negative; zero mismatches |
 | Guard representation | 378 subset/k-interval queries | 306 greatest, 72 absent; zero mismatches |
@@ -60,10 +60,11 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Producer/checker separation
 
 - `compatibility/model.py` and `infer.py` implement the recursive finite semantics and producer.
-- `compatibility/replay.py` independently replays complete semantic certificates with an iterative continuation machine.
+- `compatibility/replay.py` independently replays complete semantic certificates with an iterative syntax cursor and environment.
 - `compatibility/uniform.py` produces policies/conflicts; `uniform_check.py` independently validates complete policy supports and deletion witnesses.
 - `compatibility/succinct_campaign.py` uses scalar circuit evaluation; `succinct_check.py` checks complete policies with packed truth vectors.
 - `compatibility/cases.py`, `scholarly.py`, and independent closed-form/direct oracles construct expected answers without invoking the client producer.
+- `compatibility/guards.py` enumerates endpoint-interval unions without calling the separate component-count oracle.
 - `reproduce.py` and `reproduce_succinct.py` regenerate and compare declared deterministic files.
 
 “Independent” here means separate code paths, not independent people or organizations. The same AI-assisted research process produced the code and prose, so correlated conceptual errors remain possible.
@@ -71,7 +72,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Repository map
 
 - `compatibility/`: semantics, producers, checkers, oracles, campaigns, reproduction drivers
-- `tests/`: 45 unit and adversarial tests
+- `tests/`: 57 unit and adversarial tests
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary

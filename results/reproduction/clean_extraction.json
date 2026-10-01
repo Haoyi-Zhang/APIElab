@@ -9,13 +9,13 @@
     "standalone": "evolution-parametric-compatibility.zip"
   },
   "artifact": {
-    "semantic_exact_matches": 13,
-    "semantic_expected_files": 13,
+    "semantic_exact_matches": 14,
+    "semantic_expected_files": 14,
     "structure_cases": 6280,
     "succinct_exact_matches": 7,
     "succinct_expected_files": 7,
-    "unit_tests_passed": 45,
-    "unit_tests_run": 45
+    "unit_tests_passed": 57,
+    "unit_tests_run": 57
   },
   "full_project_top_level": [
     "CURRENT-STATE.md",
@@ -26,11 +26,13 @@
   "paper": {
     "build_exit_code": 0,
     "encrypted": false,
+    "fonts_not_embedded": 0,
     "overfull_boxes_final_pass": 0,
     "pages": 50,
     "render_source": "paper/main.pdf",
     "undefined_citations_final_pass": 0,
     "undefined_references_final_pass": 0
   },
-  "scope": "verification performed after extracting the delivered full-project and standalone archives into fresh directories; self-audit, not independent review"
+  "post_recording_boundary": "Only reproduction audit JSON/CSV records were refreshed after this measured extraction. Code, tests, fixed inputs/results, proofs, paper source, figures, bibliography, and compiled paper were unchanged; the final packaged archives are checked again outside this embedded record.",
+  "scope": "verification performed after extracting a release candidate into fresh directories; self-audit, not independent review"
 }

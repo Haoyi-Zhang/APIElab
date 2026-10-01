@@ -5,6 +5,7 @@
     "local_truth_assignments": 2234496,
     "output_truth_assignments": 15895168
   },
+  "construction_boundary_checks": 4,
   "counts": {
     "constant": 2120,
     "greatest_exists": 3140,
@@ -16,6 +17,10 @@
     "scalar_gate_steps": 74364816,
     "scalar_global_assignments": 558624,
     "scalar_version_evaluations": 3973792
+  },
+  "fixed_selection_truth_table": {
+    "s": 0,
+    "u": 0
   },
   "maxima": {
     "a_bits": 5,

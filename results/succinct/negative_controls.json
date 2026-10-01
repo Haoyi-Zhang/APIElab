@@ -11,6 +11,91 @@
     },
     "without_anchor": true
   },
+  "construction_boundaries": [
+    {
+      "K": 0,
+      "endpoint": "minimum",
+      "greatest_exists": true,
+      "oracle_answers": 0,
+      "output_count": 5,
+      "q": 1,
+      "sentinel": "T4",
+      "sentinel_always_false": true,
+      "support": [
+        0,
+        1
+      ]
+    },
+    {
+      "K": 3,
+      "endpoint": "maximum",
+      "greatest_exists": false,
+      "oracle_answers": 1,
+      "output_count": 5,
+      "q": 1,
+      "sentinel": "T4",
+      "sentinel_always_false": true,
+      "support": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "K": 0,
+      "endpoint": "minimum",
+      "greatest_exists": true,
+      "oracle_answers": 0,
+      "output_count": 7,
+      "q": 2,
+      "sentinel": "T6",
+      "sentinel_always_false": true,
+      "support": [
+        0,
+        1
+      ]
+    },
+    {
+      "K": 5,
+      "endpoint": "maximum",
+      "greatest_exists": false,
+      "oracle_answers": 3,
+      "output_count": 7,
+      "q": 2,
+      "sentinel": "T6",
+      "sentinel_always_false": true,
+      "support": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "fixed_selection_truth_table": {
+    "C1": "x",
+    "C2": "not x",
+    "formula_order": "exists choice,selection; forall input",
+    "rows": [
+      {
+        "C1": 0,
+        "C2": 1,
+        "x": 0
+      },
+      {
+        "C1": 1,
+        "C2": 0,
+        "x": 1
+      }
+    ],
+    "s": 0,
+    "u": 0
+  },
   "quantifier_swap": {
     "exists_y_forall_x": false,
     "forall_x_exists_y": true,

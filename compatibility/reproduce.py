@@ -41,7 +41,8 @@ def main():
               'inputs/uniform_problems.jsonl',
               'results/semantic_certificates.jsonl','results/semantic_results.csv','results/summary.json',
               'results/uniform_certificates.jsonl','results/uniform_results.jsonl','results/composition.jsonl',
-              'results/guard_queries.jsonl','results/observation_sensitivity.json'}
+              'results/guard_queries.jsonl','results/observation_sensitivity.json',
+              'results/partition_refinement.jsonl'}
     if set(checked)!=required:
         parser.exit(2,'Incomplete deterministic comparison.\n')
     # Authored example and boundary fixtures are retained inputs, not drawn

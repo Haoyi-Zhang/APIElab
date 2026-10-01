@@ -21,10 +21,16 @@
     "whole_compatible": 80
   },
   "guards": {
+    "endpoint_candidate_masks": 12612,
     "greatest_exists": 306,
     "no_greatest": 72,
     "oracle_mismatches": 0,
     "queries": 378
+  },
+  "partition_refinement": {
+    "coarse_supports_checked": 12844,
+    "oracle_mismatches": 0,
+    "strict_pairs": 4172
   },
   "scope": {
     "all_tiny_histories_claim": false,
@@ -38,6 +44,47 @@
   },
   "semantic": {
     "campaign_cases": 1230,
+    "family_contract": {
+      "default_effect": {
+        "maximum_call_sites": 2,
+        "product": [
+          4,
+          5,
+          5,
+          6
+        ],
+        "templates": [
+          "explicit_input",
+          "omitted_default",
+          "presence_guard_omitted_else_input",
+          "input_branch_omitted_or_explicit",
+          "two_call_default_then_explicit",
+          "version_guard_omitted_or_explicit"
+        ]
+      },
+      "scholarly": {
+        "cases": 30,
+        "maximum_call_sites": 3
+      },
+      "truth_table": {
+        "maximum_call_sites": 2,
+        "product": [
+          4,
+          5,
+          5,
+          6
+        ],
+        "templates": [
+          "explicit_input",
+          "explicit_zero",
+          "explicit_one",
+          "presence_guard_fallback",
+          "two_call_composition",
+          "input_branch"
+        ],
+        "version_guard_templates": 0
+      }
+    },
     "generated_cases": 1200,
     "generated_effect_default_cases": 600,
     "generated_truth_table_cases": 600,

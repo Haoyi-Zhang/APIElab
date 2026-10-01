@@ -4,35 +4,37 @@
   "interpretation": "Scoped clean-extraction process measurements only; no reconstructed global campaign or browser-transfer total is claimed.",
   "is_complete_conversation_cpu_total": false,
   "paper_build_clean_extraction": {
-    "elapsed_seconds": 5.28,
+    "elapsed_seconds": 4.35,
+    "exit_status": 0,
     "pages": 50,
     "peak_rss_kib": 62976,
-    "system_seconds": 0.27,
-    "user_seconds": 5.0
+    "system_seconds": 0.15,
+    "user_seconds": 4.19
   },
   "semantic_campaign_clean_extraction": {
     "child_processes": 0,
     "cpu_limit_seconds": 30,
-    "cpu_seconds": 2.612715912,
+    "cpu_seconds": 2.3155692219999997,
     "measurement_scope": "single pilot process; includes mutations, independent oracles and output writing",
-    "peak_rss_kib": 114216,
+    "peak_rss_kib": 114860,
     "virtual_memory_limit_bytes": 805306368,
-    "wall_seconds": 2.6130826210001032,
+    "wall_seconds": 2.319107043999793,
     "workers": 1
   },
   "succinct_reproduction_clean_extraction": {
     "child_processes": 0,
-    "cpu_seconds": 18.832602024,
-    "peak_rss_kib": 123308,
+    "cpu_seconds": 18.605858124999997,
+    "peak_rss_kib": 123180,
     "scope": "full regeneration, mutations, structure replay and exact comparison",
-    "wall_seconds": 18.84222422799985,
+    "wall_seconds": 18.608703318999915,
     "workers": 1
   },
   "unit_tests_clean_extraction": {
-    "elapsed_seconds": 1.1,
-    "peak_rss_kib": 100784,
-    "system_seconds": 0.22,
-    "tests": 45,
-    "user_seconds": 1.35
+    "elapsed_seconds": 1.94,
+    "exit_status": 0,
+    "peak_rss_kib": 101652,
+    "system_seconds": 0.2,
+    "tests": 57,
+    "user_seconds": 2.95
   }
 }

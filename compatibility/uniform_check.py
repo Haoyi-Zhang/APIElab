@@ -2,12 +2,27 @@
 from itertools import product
 
 
-def oracle(problem):
-    # This oracle deliberately enumerates policies, not per-block intersections.
+def enumerate_supports(problem):
+    """Enumerate supports of every block-respecting policy."""
     m = problem['choices']; blocks = problem['blocks']; rows = problem['safe_choices']
     supports = set()
     for assignment in product(range(m), repeat=max(blocks) + 1):
         supports.add(tuple(v for v in range(len(rows)) if assignment[blocks[v]] in rows[v]))
+    return supports
+
+
+def is_refinement(fine_blocks, coarse_blocks):
+    """Return whether every fine block is contained in one coarse block."""
+    if type(fine_blocks) is not list or type(coarse_blocks) is not list or len(fine_blocks) != len(coarse_blocks):
+        raise ValueError('partition sizes')
+    return all(fine_blocks[i] != fine_blocks[j] or coarse_blocks[i] == coarse_blocks[j]
+               for i in range(len(fine_blocks)) for j in range(len(fine_blocks)))
+
+
+def oracle(problem):
+    # This oracle deliberately enumerates policies, not per-block intersections.
+    m = problem['choices']; blocks = problem['blocks']; rows = problem['safe_choices']
+    supports = enumerate_supports(problem)
     union = tuple(v for v in range(len(rows)) if any(v in r for r in supports))
     return {'greatest_region': list(union) if union in supports else None,
             'policy_count': m ** (max(blocks) + 1), 'distinct_supports': len(supports)}

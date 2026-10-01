@@ -76,7 +76,7 @@ def validate(case: dict) -> None:
         raise ValueError('invalid postprocessing table')
 
 
-def construct(case: dict) -> dict:
+def construct(case: dict, *, with_layout: bool = False):
     validate(case)
     q = len(case['queries']); quant = case['quantified']
     c = Circuit(1+q+(q if quant else 0),q if quant else 0)
@@ -104,10 +104,14 @@ def construct(case: dict) -> dict:
     for j in range(1,2*q+2):
         tag = t if j % 2 else c.gate('not',t)
         outputs.append(c.gate('and',thresholds[j-1],c.gate('or',thresholds[j],tag)))
-    return {'id':case['id'],'a_bits':c.a_bits,'x_bits':c.x_bits,'nodes':c.nodes,'outputs':outputs}
+    circuit={'id':case['id'],'a_bits':c.a_bits,'x_bits':c.x_bits,'nodes':c.nodes,'outputs':outputs}
+    if with_layout:
+        return circuit, {'thresholds':thresholds, 'sentinel':thresholds[-1]}
+    return circuit
 
 
-def evaluate(circuit: dict, a: int, x: int) -> list[int]:
+def evaluate_nodes(circuit: dict, a: int, x: int) -> list[int]:
+    """Evaluate every node in topological order (test/audit helper)."""
     values = []
     for node in circuit['nodes']:
         op,*args = node
@@ -119,6 +123,11 @@ def evaluate(circuit: dict, a: int, x: int) -> list[int]:
         elif op == 'or': v = values[args[0]] | values[args[1]]
         else: raise ValueError('unknown circuit gate')
         values.append(v)
+    return values
+
+
+def evaluate(circuit: dict, a: int, x: int) -> list[int]:
+    values=evaluate_nodes(circuit,a,x)
     return [values[i] for i in circuit['outputs']]
 
 

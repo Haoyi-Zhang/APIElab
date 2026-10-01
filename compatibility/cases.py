@@ -20,7 +20,18 @@ def call(api='f', arg=None, name='y', body=None):
             'body': ret(var(name)) if body is None else body}
 
 
+TRUTH_TEMPLATE_NAMES = (
+    'explicit_input',
+    'explicit_zero',
+    'explicit_one',
+    'presence_guard_fallback',
+    'two_call_composition',
+    'input_branch',
+)
+
+
 def templates():
+    """Six clients; none contains a numerical version guard and at most two calls occur syntactically."""
     return [call(arg=var()), call(arg=const(0)), call(arg=const(1)),
             {'op': 'if_present', 'api': 'f', 'then': call(arg=var()), 'else': ret()},
             call(arg=var(), body=call(arg=var('y'), name='z')),
@@ -28,6 +39,7 @@ def templates():
 
 
 def history_cases():
+    """First exhaustive family: 4 reference functions x 5 x 5 candidate profiles x 6 clients."""
     number = 0
     for reference in range(4):
         for a, b in product(range(-1, 4), repeat=2):
@@ -139,8 +151,18 @@ def effect_declaration(profile):
     return declaration(code=code, default=default, words=words)
 
 
+EFFECT_TEMPLATE_NAMES = (
+    'explicit_input',
+    'omitted_default',
+    'presence_guard_omitted_else_input',
+    'input_branch_omitted_or_explicit',
+    'two_call_default_then_explicit',
+    'version_guard_omitted_or_explicit',
+)
+
+
 def effect_templates():
-    """Six clients that exercise defaults, effects, guards, and sequencing."""
+    """Six clients exercising defaults/effects; the largest syntax has two call sites."""
     return [
         call(arg=var()),
         call(),
@@ -152,7 +174,7 @@ def effect_templates():
 
 
 def effect_history_cases():
-    """A second exhaustive family: 4 references x 25 pairs x 6 clients = 600."""
+    """Second exhaustive family: 4 reference profiles x 5 x 5 candidate profiles x 6 clients = 600."""
     number = 0
     for reference in range(4):
         for a, b in product(range(-1, 4), repeat=2):
