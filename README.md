@@ -94,4 +94,4 @@ The artifact does not claim proof-assistant assurance, industrial scalability, A
 
 ## AI involvement and accountability
 
-ChatGPT was used substantively for research design, literature inspection, proof drafting and attack, implementation, tests, execution orchestration, analysis, writing, and artifact review. Before external use, the named human authors must inspect the full packet, verify the proofs and source characterizations, assume accountability, and comply with current authorship and disclosure policies. No public repository address, submission, or reviewer outcome is asserted here.
+ChatGPT was used substantively for research design, literature inspection, proof drafting and attack, implementation, tests, execution orchestration, analysis, writing, and artifact review. Before external use, the named human authors must inspect the full packet, verify the proofs and source characterizations, assume accountability, and comply with current authorship and disclosure policies. No submission or reviewer outcome is asserted here.
