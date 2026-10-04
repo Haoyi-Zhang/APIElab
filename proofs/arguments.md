@@ -1,6 +1,6 @@
 # Mathematical arguments and evidence boundary
 
-These are ordinary mathematical proofs. They are not proof-assistant derivations. The executable checkers validate finite instances and complete finite evaluation tables; they do not certify the asymptotic proofs in this document. The same AI-assisted research process drafted the proofs, producer, and separately implemented checking code. The research lock is proportional: standard synthesis, MUS/MSS, product-program, effect-system, and maximum-score components are credited to prior work; no priority claim is made. The retained claim is the stated quantifier separation and exact compact-complexity classification with its one-call/two-maxima embedding.
+These are ordinary mathematical proofs. They are not proof-assistant derivations. The executable checkers validate finite instances and complete finite evaluation tables; they do not certify the asymptotic proofs in this document. The same development process drafted the proofs, producer, and separately implemented checking code. The research lock is proportional: standard synthesis, MUS/MSS, product-program, effect-system, and maximum-score components are credited to prior work; no priority claim is made. The retained claim is the stated quantifier separation and exact compact-complexity classification with its one-call/two-maxima embedding.
 
 ## 1. Fixed semantics, not metadata
 

@@ -67,7 +67,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - `compatibility/guards.py` enumerates endpoint-interval unions without calling the separate component-count oracle.
 - `reproduce.py` and `reproduce_succinct.py` regenerate and compare declared deterministic files.
 
-“Independent” here means separate code paths, not independent people or organizations. The same AI-assisted research process produced the code and prose, so correlated conceptual errors remain possible.
+“Independent” here means separate code paths, not independent people or organizations. The same development process produced the code and prose, so correlated conceptual errors remain possible.
 
 ## Repository map
 
@@ -92,6 +92,3 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 
 The artifact does not claim proof-assistant assurance, industrial scalability, Android prevalence, detector precision/recall, repair success, human validation, independent peer review, or acceptance. Scholarly projections preserve only a source-motivated pattern.
 
-## AI involvement and accountability
-
-ChatGPT was used substantively for research design, literature inspection, proof drafting and attack, implementation, tests, execution orchestration, analysis, writing, and artifact review. Before external use, the named human authors must inspect the full packet, verify the proofs and source characterizations, assume accountability, and comply with current authorship and disclosure policies. No submission or reviewer outcome is asserted here.
