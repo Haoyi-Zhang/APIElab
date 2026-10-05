@@ -18,7 +18,7 @@ SOURCES = {
     },
     'dagenais2009semdiff': {
         'title': 'SemDiff: Analysis and Recommendation Support for API Evolution',
-        'url': 'https://doi.org/10.1109/ICSE.2009.5070540',
+        'url': 'https://doi.org/10.1109/ICSE.2009.5070565',
         'role': 'method/class deletion and replacement-call recommendations',
     },
     'liu2021silent': {

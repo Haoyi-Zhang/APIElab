@@ -76,7 +76,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary
-- `literature/calibration.csv`: 12 TOPLAS + 5 influential + 5 adjacent full-paper calibration
+- `literature/calibration.csv`: 22 related-work comparisons (11 TOPLAS, one PLDI framework, five foundational/synthesis, five API-compatibility)
 - `literature/closest-work.md`: adversarial research-lock decision
 - `claim_evidence_ledger.csv`: material claim-to-proof/result mapping
 - `external_resources.csv`: scholarly/official provenance and integration mode
@@ -91,4 +91,3 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - **Source-mapped:** a scholarly pattern was projected into the toy calculus with a stated fidelity limit.
 
 The artifact does not claim proof-assistant assurance, industrial scalability, Android prevalence, detector precision/recall, repair success, human validation, independent peer review, or acceptance. Scholarly projections preserve only a source-motivated pattern.
-

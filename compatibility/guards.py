@@ -62,4 +62,6 @@ def component_count(mask: int, n: int) -> int:
 def component_oracle(safe_mask: int, n: int, k: int) -> int | None:
     """Closed-form oracle for a semantic set under a k-interval language."""
     _admit(n, k, safe_mask)
+    if k == 0:
+        return 0
     return safe_mask if component_count(safe_mask, n) <= k else None
