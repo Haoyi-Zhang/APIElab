@@ -1,0 +1,187 @@
+{
+  "measurement": {
+    "affinity_cpu_count": 1,
+    "child_processes": 0,
+    "cpu_limit_seconds": 30,
+    "cpu_seconds": 4.129307634,
+    "measurement_scope": "single pilot process; includes mutations, independent oracles and output writing",
+    "peak_rss_kib": 37400,
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.12.14 (main, Aug 13 2026, 02:47:42) [GCC 13.3.0]",
+    "rss_scope": "process lifetime peak, not a process-tree aggregate",
+    "rss_source": "resource.getrusage(RUSAGE_SELF).ru_maxrss",
+    "virtual_memory_limit_bytes": 805306368,
+    "wall_seconds": 4.134277252000004,
+    "workers": 1
+  },
+  "summary": {
+    "baselines": {
+      "interval_hull_decisions": 3702,
+      "interval_hull_false_accept": 206,
+      "interval_hull_false_reject": 0,
+      "largest_sound_interval_decisions": 3702,
+      "largest_sound_interval_false_accept": 0,
+      "largest_sound_interval_false_reject": 206,
+      "minimum_introduction_decisions": 3702,
+      "minimum_introduction_false_accept": 1858,
+      "minimum_introduction_false_reject": 10,
+      "syntactic_availability_decisions": 3702,
+      "syntactic_availability_false_accept": 1375,
+      "syntactic_availability_false_reject": 26
+    },
+    "composition": {
+      "initial_zero_false_accept": 16,
+      "initial_zero_false_accept_full_domain": 32,
+      "initial_zero_local_accepted": 64,
+      "local_universal_accepted": 16,
+      "quadruples": 256,
+      "universal_false_reject": 64,
+      "whole_compatible": 80
+    },
+    "guards": {
+      "endpoint_candidate_masks": 12612,
+      "greatest_exists": 306,
+      "no_greatest": 72,
+      "oracle_mismatches": 0,
+      "queries": 378
+    },
+    "partition_refinement": {
+      "coarse_supports_checked": 12844,
+      "oracle_mismatches": 0,
+      "strict_pairs": 4172
+    },
+    "scope": {
+      "all_tiny_histories_claim": false,
+      "device_runs": 0,
+      "general_mechanized_proofs": 0,
+      "random_sampling": false,
+      "scholarly_case_kind": "bounded hand-authored projections, not source reproductions",
+      "scholarly_cases": 30,
+      "symbolic_execution": false,
+      "workers": 1
+    },
+    "semantic": {
+      "campaign_cases": 1230,
+      "family_contract": {
+        "default_effect": {
+          "maximum_call_sites": 2,
+          "product": [
+            4,
+            5,
+            5,
+            6
+          ],
+          "templates": [
+            "explicit_input",
+            "omitted_default",
+            "presence_guard_omitted_else_input",
+            "input_branch_omitted_or_explicit",
+            "two_call_default_then_explicit",
+            "version_guard_omitted_or_explicit"
+          ]
+        },
+        "scholarly": {
+          "cases": 30,
+          "maximum_call_sites": 3
+        },
+        "truth_table": {
+          "maximum_call_sites": 2,
+          "product": [
+            4,
+            5,
+            5,
+            6
+          ],
+          "templates": [
+            "explicit_input",
+            "explicit_zero",
+            "explicit_one",
+            "presence_guard_fallback",
+            "two_call_composition",
+            "input_branch"
+          ],
+          "version_guard_templates": 0
+        }
+      },
+      "generated_cases": 1200,
+      "generated_effect_default_cases": 600,
+      "generated_truth_table_cases": 600,
+      "including_mutations": {
+        "replay_evaluation_steps": 347438,
+        "replay_executions": 66614
+      },
+      "measured_dimensions": {
+        "ast_nodes": 11,
+        "call_sites": 3,
+        "certificate_nodes": 18,
+        "declarations": 4,
+        "max_trace": 4,
+        "states": 3
+      },
+      "mutation_categories": {
+        "boolean_as_integer": 1246,
+        "duplicate_row": 1246,
+        "false_call_log": 1245,
+        "false_least_witness": 1246,
+        "false_trace": 1246,
+        "flip_result": 1246,
+        "omit_row": 1246,
+        "omit_safe_reference": 1246,
+        "reorder_rows": 1246,
+        "unknown_field": 1246,
+        "wrong_identity": 1246
+      },
+      "mutation_rejections": 13705,
+      "oracle_mismatches": 0,
+      "regression_controls": 16,
+      "scholarly_illustrations": 30,
+      "total_executed": 1246,
+      "totals": {
+        "certificate_nodes": 15686,
+        "checker_steps": 38606,
+        "evaluation_steps": 38606,
+        "executions": 7402
+      }
+    },
+    "uniform": {
+      "greatest_exists": 2548,
+      "mutation_categories": {
+        "invalid_deletion_choice": 554,
+        "omitted_choice_rejection": 554
+      },
+      "mutation_rejections": 1108,
+      "no_greatest": 554,
+      "obstruction_size_2": 548,
+      "obstruction_size_3": 6,
+      "oracle_mismatches": 0,
+      "policy_enumerations": 31538,
+      "problems": 3102
+    }
+  }
+}
+{
+  "deterministic_files_compared": [
+    "inputs/control_expectations.json",
+    "inputs/scholarly_case_sources.json",
+    "inputs/scholarly_expectations.json",
+    "inputs/semantic_cases.jsonl",
+    "inputs/uniform_problems.jsonl",
+    "results/composition.jsonl",
+    "results/guard_queries.jsonl",
+    "results/observation_sensitivity.json",
+    "results/partition_refinement.jsonl",
+    "results/semantic_certificates.jsonl",
+    "results/semantic_results.csv",
+    "results/summary.json",
+    "results/uniform_certificates.jsonl",
+    "results/uniform_results.jsonl"
+  ],
+  "exact_matches": 14,
+  "fixtures_reexecuted": [
+    "example",
+    "boundary"
+  ],
+  "boundary_counts_exact": true,
+  "measurement_values_compared": false,
+  "general_proof_claim": false
+}

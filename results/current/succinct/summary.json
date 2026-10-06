@@ -1,0 +1,34 @@
+{
+  "cases": 6280,
+  "checker_including_three_mutations_per_case": {
+    "bitvector_gate_steps": 3925520,
+    "local_truth_assignments": 2234496,
+    "output_truth_assignments": 15895168
+  },
+  "construction_boundary_checks": 4,
+  "counts": {
+    "constant": 2120,
+    "greatest_exists": 3140,
+    "no_greatest": 3140,
+    "quantified": 4160,
+    "rejected_flip_decision": 6280,
+    "rejected_omit_policy": 6280,
+    "rejected_wrong_identifier": 6280,
+    "scalar_gate_steps": 74364816,
+    "scalar_global_assignments": 558624,
+    "scalar_version_evaluations": 3973792
+  },
+  "fixed_selection_truth_table": {
+    "s": 0,
+    "u": 0
+  },
+  "maxima": {
+    "a_bits": 5,
+    "gates": 244,
+    "history_states": 9,
+    "x_bits": 2
+  },
+  "negative_controls": 3,
+  "oracle_mismatches": 0,
+  "scope": "exhaustive stated truth-table families; scalar whole-policy enumeration and independent truth-vector checks; not a mechanized asymptotic proof"
+}

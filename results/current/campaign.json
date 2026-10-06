@@ -1,0 +1,117 @@
+{
+  "command_timeout_seconds": 180,
+  "commands": [
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "name": "unit-tests",
+      "returncode": 0,
+      "tests_run": 65,
+      "timed_out": false,
+      "wall_seconds": 0.7065849119999967
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.reproduce",
+        "--output",
+        "/home/runner/work/_temp/apielab-37412872349-1/semantic"
+      ],
+      "name": "semantic",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 4.2734347580000005
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.reproduce_succinct",
+        "--output",
+        "/home/runner/work/_temp/apielab-37412872349-1/succinct"
+      ],
+      "name": "succinct",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 32.744506261000005
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/example.json",
+        "results/example_certificate.json"
+      ],
+      "name": "example-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.05232596599999795
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/boundary_case.json",
+        "results/boundary_certificate.json"
+      ],
+      "name": "boundary-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.07297450800000149
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "infer",
+        "inputs/example.json",
+        "/home/runner/work/_temp/apielab-37412872349-1/example_certificate.json"
+      ],
+      "name": "example-infer",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.049819971000005125
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/example.json",
+        "/home/runner/work/_temp/apielab-37412872349-1/example_certificate.json"
+      ],
+      "name": "example-fresh-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.04850026100000093
+    }
+  ],
+  "complete": true,
+  "machine": "x86_64",
+  "maximum_child_commands": 7,
+  "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 13 2026, 02:47:42) [GCC 13.3.0]",
+  "python_executable": "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+  "test_fixtures_retained": true
+}

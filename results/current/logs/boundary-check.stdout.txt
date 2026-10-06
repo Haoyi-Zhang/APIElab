@@ -1,0 +1,1 @@
+{"certificate_accepted": true, "counts": {"ast_nodes": 50, "call_sites": 24, "certificate_nodes": 1600, "checker_steps": 4736, "declarations": 64, "executions": 64, "states": 32}}
