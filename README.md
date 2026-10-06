@@ -1,12 +1,20 @@
 # Uniform Elaboration Across Evolving APIs — artifact
 
-This standalone repository accompanies the internal research article **“Uniform Elaboration Across Evolving APIs: Principal Regions, Obstructions, and Complexity.”** It contains a standard-library Python reference implementation, independent finite checkers/oracles, exact generated and authored inputs, retained raw results, tests, ordinary mathematical arguments, source calibration, and claim/provenance ledgers.
+APIElab-code accompanies **“Uniform Elaboration Across Evolving APIs: Principal Regions, Obstructions, and Complexity.”** It contains a standard-library Python reference implementation, independent finite checkers/oracles, exact generated and authored inputs, retained raw results, tests, ordinary mathematical arguments, and source provenance.
 
 The repository is complete for the declared bounded evidence. It is not a proof-assistant development, Android detector, source-to-source repair system, solver scalability study, or real-app/device benchmark. The asymptotic theorems are ordinary proofs in `proofs/arguments.md`; finite execution checks only the stated families.
 
 ## Reproduce from a clean extraction
 
-Use Python 3.10 or newer on a Linux/Unix-like system. The runners use the standard-library `resource` module for CPU/address-space/RSS controls and have not been validated on Windows. No third-party package, network access, GPU, solver, model API, paper directory, or external service is required.
+Use Python 3.10 or newer. The full finite campaign was rerun on Windows 11 AMD64 with CPython 3.12.14. Linux uses `resource` for CPU/address-space limits and peak RSS. Windows obtains the current process's real peak working set through `GetProcessMemoryInfo`; it records CPU/address-space limits as unavailable. No third-party package, network access, GPU, solver, model API, paper directory, or external service is required.
+
+The complete bounded driver (seven owned commands, at most 180 wall seconds each) is:
+
+```sh
+python -B -m compatibility.scientific_checks --output FRESH-OUTPUT
+```
+
+It retains raw stdout/stderr, actual command results, environment metadata, test fixtures and fresh campaign output. Set `PYTHONUTF8=1` and `PYTHONDONTWRITEBYTECODE=1`. The supplied Linux workflow uses Python 3.12, a 30-minute job bound, a fresh `RUNNER_TEMP` directory, and pinned actions; it is prepared for execution, not evidence of a completed CI run.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -18,11 +26,13 @@ The two output directories must not already exist. The public commands exercise 
 
 Expected completion conditions:
 
-- **57 tests** pass;
+- **65 tests** run; the Windows-limit test is skipped on non-Windows systems;
 - semantic reproduction reports **14/14 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
 - succinct reproduction reports **7/7 exact file matches** and rechecks all **6,280** structure certificates.
 
 Timing and maximum resident memory are recorded but intentionally excluded from byte equality.
+
+JSON/JSONL files use fixed LF line endings on every platform; CSV retains its explicit dialect. The measured Windows campaign records and raw test log are in `results/windows-20261006/`. Historical Unix measurements are retained separately and are not attributed to this run. Peak memory is a process-lifetime observation, not an aggregate over child processes.
 
 Useful direct checks:
 
@@ -50,7 +60,7 @@ Admission caps are 32 states, 64 declarations, 24 call sites, 256 syntax nodes, 
 | Regression controls | 16 authored controls outside the 1,230 denominator | all expected outcomes |
 | Uniform choice | 3,102 matrices/partitions; 31,538 policies | 2,548 positive, 554 negative; zero mismatches |
 | Guard representation | 378 subset/k-interval queries | 306 greatest, 72 absent; zero mismatches |
-| Composition | 256 Boolean quadruples | exact whole/local diagnostics retained |
+| Composition | 256 Boolean quadruples | 80 universal whole-client agreements; initial-zero local rule: 16 false acceptances on `{0}`, 32 on `{0,1}` |
 | Compact reduction | 6,280 circuit histories | 3,140 positive, 3,140 negative; zero mismatches |
 
 The principal campaign is exactly **1,200 generated histories + 30 scholarly projections = 1,230**. The 16 regression controls are executed but not counted in that denominator. No random seed exists because every family is deterministically enumerated.
@@ -72,7 +82,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Repository map
 
 - `compatibility/`: semantics, producers, checkers, oracles, campaigns, reproduction drivers
-- `tests/`: 57 unit and adversarial tests
+- `tests/`: 65 unit and finite regression tests
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary

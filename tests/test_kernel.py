@@ -1,8 +1,9 @@
 import copy
 import json
-import tempfile
 import unittest
 from pathlib import Path
+from itertools import product
+from tests.fixtures import temporary_directory
 from compatibility.cases import (declaration, call, var, ret, const, controls,
                                  history_cases, effect_history_cases,
                                  truth_table_oracle, effect_oracle,
@@ -125,19 +126,19 @@ class KernelTests(unittest.TestCase):
             check(c,{'case_id':c['id'],'region':[0],'rows':[{}]*4,'counterexamples':[],'least_counterexample':None})
 
     def test_duplicate_json_keys(self):
-        with tempfile.TemporaryDirectory() as d:
+        with temporary_directory() as d:
             p=Path(d)/'case.json'; p.write_text('{"a":1,"a":2}')
             with self.assertRaises(InvalidCase): load_json(p)
             with self.assertRaises(Rejected): read_json(p)
 
     def test_nonfinite_json(self):
-        with tempfile.TemporaryDirectory() as d:
+        with temporary_directory() as d:
             p=Path(d)/'case.json'; p.write_text('{"a":NaN}')
             with self.assertRaises(InvalidCase): load_json(p)
             with self.assertRaises(Rejected): read_json(p)
 
     def test_json_byte_bound(self):
-        with tempfile.TemporaryDirectory() as d:
+        with temporary_directory() as d:
             p=Path(d)/'case.json'; p.write_text(' '*100)
             with self.assertRaises(InvalidCase): load_json(p,cap=20)
             with self.assertRaises(Rejected): read_json(p,byte_limit=20)
@@ -217,6 +218,17 @@ class KernelTests(unittest.TestCase):
         fine={'choices':2,'blocks':[0,1],'safe_choices':[[0],[1]]}
         self.assertTrue(is_refinement(fine['blocks'],coarse['blocks']))
         self.assertTrue(enumerate_supports(coarse) <= enumerate_supports(fine))
+
+    def test_composition_false_acceptance_depends_on_input_domain(self):
+        functions = [(0, 0), (1, 0), (0, 1), (1, 1)]
+        accepted = singleton_errors = full_domain_errors = 0
+        for f0, f1, g0, g1 in product(functions, repeat=4):
+            local = f0[0] == f1[0] and g0[0] == g1[0]
+            if local:
+                accepted += 1
+                singleton_errors += g0[f0[0]] != g1[f1[0]]
+                full_domain_errors += any(g0[f0[x]] != g1[f1[x]] for x in (0, 1))
+        self.assertEqual((accepted, singleton_errors, full_domain_errors), (64, 16, 32))
 
     def test_uniform_checker_accepts_noncanonical_valid_certificates(self):
         positive={'choices':2,'blocks':[0,0],'safe_choices':[[0,1],[0,1]]}

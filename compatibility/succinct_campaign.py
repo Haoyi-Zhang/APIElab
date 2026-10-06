@@ -12,12 +12,11 @@ from collections import Counter
 from copy import deepcopy
 import csv
 import json
-import os
 from pathlib import Path
-import resource
 import time
 from .succinct import instances, construct, scalar_certificate, evaluate_nodes
 from .succinct_check import certificate, check, Rejected
+from .measurement import configure_limits, snapshot
 
 
 def oracle(case):
@@ -50,15 +49,10 @@ def run(output:Path, *, inject_failure_after_create=False):
     # are rejected and are never removed or overwritten.
     if inject_failure_after_create:
         raise RuntimeError('injected failure after exclusive output creation')
-    if hasattr(os,'sched_getaffinity'):
-        os.sched_setaffinity(0,{min(os.sched_getaffinity(0))})
-    resource.setrlimit(resource.RLIMIT_AS,(768*1024*1024,768*1024*1024))
-    # The measured two-case prototype was 0.0064 CPU s. Hard cap includes all
-    # scalar enumeration, independent checks, mutations, and exact file output.
-    resource.setrlimit(resource.RLIMIT_CPU,(40,40))
+    limits = configure_limits(40)
     start_cpu=time.process_time();start_wall=time.monotonic()
     accounting={}; counts=Counter(); maxima=Counter()
-    streams={n:(output/(n+'.jsonl')).open('w',encoding='utf-8') for n in ('cases','circuits','certificates')}
+    streams={n:(output/(n+'.jsonl')).open('w',encoding='utf-8',newline='\n') for n in ('cases','circuits','certificates')}
     def emit(name,data):
         streams[name].write(json.dumps(data,separators=(',',':'),sort_keys=True)+'\n')
     fields=['id','quantified','queries','a_bits','x_bits','history_states','gates','oracle_answers','maximum_score','greatest_exists','least_policy']
@@ -150,11 +144,10 @@ def run(output:Path, *, inject_failure_after_create=False):
              'maxima':dict(maxima),'oracle_mismatches':0,'negative_controls':3,
              'construction_boundary_checks':len(boundary),'fixed_selection_truth_table':{'u':u,'s':s},
              'scope':'exhaustive stated truth-table families; scalar whole-policy enumeration and independent truth-vector checks; not a mechanized asymptotic proof'}
-    measurement={'cpu_seconds':time.process_time()-start_cpu,'wall_seconds':time.monotonic()-start_wall,
-                 'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,'workers':1,'child_processes':0,
-                 'cpu_limit_seconds':40,'virtual_memory_limit_bytes':768*1024*1024}
+    measurement=snapshot(start_cpu,start_wall,limits,
+        measurement_scope='scalar campaign including direct oracles, mutations and output writing')
     for name,data in [('summary',summary),('measurement',measurement),('negative_controls',negative)]:
-        (output/(name+'.json')).write_text(json.dumps(data,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+        (output/(name+'.json')).write_text(json.dumps(data,indent=2,sort_keys=True)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps({'summary':summary,'measurement':measurement},indent=2,sort_keys=True))
 
 

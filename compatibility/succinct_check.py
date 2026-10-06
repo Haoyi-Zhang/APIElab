@@ -11,6 +11,25 @@ class Rejected(ValueError):
     pass
 
 
+def read_json_line(line, byte_limit=2_000_000):
+    """Strict JSONL decoding at the structure-replay boundary."""
+    if len(line.encode('utf-8')) > byte_limit:
+        raise Rejected('JSON line byte bound')
+    def unique(pairs):
+        value = {}
+        for key, item in pairs:
+            if key in value:
+                raise Rejected('duplicate JSON key')
+            value[key] = item
+        return value
+    def nonfinite(_):
+        raise Rejected('non-finite JSON number')
+    try:
+        return json.loads(line, object_pairs_hook=unique, parse_constant=nonfinite)
+    except (ValueError, UnicodeError, RecursionError) as exc:
+        raise Rejected('invalid JSON line') from exc
+
+
 def integer(value, lo, hi):
     return type(value) is int and lo <= value <= hi
 

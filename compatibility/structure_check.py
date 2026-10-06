@@ -10,14 +10,14 @@ if not __debug__:
 import argparse
 import json
 from pathlib import Path
-from .succinct_check import check
+from .succinct_check import check, read_json_line
 
 
 def run(directory):
     directory=Path(directory);result=[]
-    with (directory/'circuits.jsonl').open() as cf,(directory/'certificates.jsonl').open() as pf:
+    with (directory/'circuits.jsonl').open(encoding='utf-8') as cf,(directory/'certificates.jsonl').open(encoding='utf-8') as pf:
         for cline,pline in zip(cf,pf,strict=True):
-            circuit=json.loads(cline);proof=json.loads(pline);check(circuit,proof)
+            circuit=read_json_line(cline);proof=read_json_line(pline);check(circuit,proof)
             unique={tuple(s) for s in proof['policy_supports']}
             maxima=sorted(s for s in unique if not any(set(s)<set(t) for t in unique))
             assert len(maxima)==(1 if proof['greatest_exists'] else 2)

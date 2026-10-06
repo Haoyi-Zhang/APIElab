@@ -20,7 +20,7 @@ def main():
         if args.action=='infer':
             cert,counts=infer(load_json(args.case))
             # Never silently overwrite an existing scientific result.
-            with args.certificate.open('x',encoding='utf-8') as f:
+            with args.certificate.open('x',encoding='utf-8',newline='\n') as f:
                 json.dump(cert,f,sort_keys=True,indent=2,allow_nan=False); f.write('\n')
             print(json.dumps({'accepted_input':True,'counts':counts},sort_keys=True))
         else:

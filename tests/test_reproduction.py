@@ -1,14 +1,14 @@
 """Failure-path tests for exclusive output ownership."""
-import tempfile
 import unittest
 from pathlib import Path
+from tests.fixtures import temporary_directory
 from compatibility.pilot import run as semantic_run
 from compatibility.succinct_campaign import run as succinct_run
 
 
 class ReproductionFailureTests(unittest.TestCase):
     def _exercise(self, runner):
-        with tempfile.TemporaryDirectory() as tmp:
+        with temporary_directory() as tmp:
             root=Path(tmp)
             fresh=root/'fresh'
             with self.assertRaises(RuntimeError):

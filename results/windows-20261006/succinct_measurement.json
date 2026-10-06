@@ -1,0 +1,15 @@
+{
+  "affinity_cpu_count": null,
+  "child_processes": 0,
+  "cpu_limit_seconds": null,
+  "cpu_seconds": 16.328125,
+  "measurement_scope": "scalar campaign including direct oracles, mutations and output writing",
+  "peak_rss_kib": 18392.0,
+  "platform": "Windows-11-10.0.28000-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "rss_scope": "process lifetime peak, not a process-tree aggregate",
+  "rss_source": "GetProcessMemoryInfo.PeakWorkingSetSize",
+  "virtual_memory_limit_bytes": null,
+  "wall_seconds": 16.68800000000192,
+  "workers": 1
+}

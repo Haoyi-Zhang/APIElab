@@ -1,0 +1,12 @@
+{
+  "child_processes": 0,
+  "cpu_seconds": 17.671875,
+  "peak_rss_kib": 51760.0,
+  "platform": "Windows-11-10.0.28000-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "rss_scope": "process lifetime peak, not a process-tree aggregate",
+  "rss_source": "GetProcessMemoryInfo.PeakWorkingSetSize",
+  "scope": "full regeneration, mutations, structure replay and exact comparison",
+  "wall_seconds": 18.093999999997322,
+  "workers": 1
+}

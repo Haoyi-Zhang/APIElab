@@ -10,8 +10,6 @@ if not __debug__:
 import argparse
 import csv
 import json
-import os
-import resource
 import time
 from collections import Counter
 from copy import deepcopy
@@ -29,28 +27,24 @@ from .uniform_check import (check as uniform_check, enumerate_supports,
                             is_refinement)
 from .guards import (greatest_sound_by_endpoints, component_count,
                      component_oracle, endpoint_union_masks)
+from .measurement import configure_limits, snapshot
 
 
 def bounds():
-    if hasattr(os, 'sched_getaffinity'):
-        available = os.sched_getaffinity(0)
-        os.sched_setaffinity(0, {min(available)})
-    resource.setrlimit(resource.RLIMIT_AS, (768*1024*1024, 768*1024*1024))
-    resource.setrlimit(resource.RLIMIT_CPU, (30, 30))
-    os.environ['OMP_NUM_THREADS'] = '1'
+    return configure_limits(30)
 
 
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_suffix(path.suffix + '.tmp')
-    temp.write_text(json.dumps(value, indent=2, sort_keys=True, allow_nan=False)+'\n', encoding='utf-8')
+    temp.write_text(json.dumps(value, indent=2, sort_keys=True, allow_nan=False)+'\n', encoding='utf-8', newline='\n')
     temp.replace(path)
 
 
 def write_lines(path, values):
     path = Path(path); path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open('w', encoding='utf-8') as f:
+    with path.open('w', encoding='utf-8', newline='\n') as f:
         for v in values:
             f.write(json.dumps(v, sort_keys=True, separators=(',', ':'), allow_nan=False)+'\n')
 
@@ -144,7 +138,7 @@ def run(output, *, inject_failure_after_create=False):
     # Existing paths are rejected by mkdir and are never removed or overwritten.
     if inject_failure_after_create:
         raise RuntimeError('injected failure after exclusive output creation')
-    bounds()
+    limits = bounds()
     begin_wall=time.monotonic(); begin_cpu=time.process_time()
     inp=output/'inputs'; res=output/'results'
     inp.mkdir(parents=True,exist_ok=True); res.mkdir(parents=True,exist_ok=True)
@@ -290,7 +284,9 @@ def run(output, *, inject_failure_after_create=False):
         composition_summary['whole_compatible']+=int(whole)
         composition_summary['local_universal_accepted']+=int(local_all)
         composition_summary['universal_false_reject']+=int(whole and not local_all)
+        composition_summary['initial_zero_local_accepted']+=int(local_zero)
         composition_summary['initial_zero_false_accept']+=int(local_zero and not composed[0])
+        composition_summary['initial_zero_false_accept_full_domain']+=int(local_zero and not whole)
         composition.append({'f0':f0,'f1':f1,'g0':g0,'g1':g1,'local_universal':local_all,
                             'whole':whole,'local_input_zero':local_zero,'composed_input_zero':composed[0]})
     assert len(composition)==256
@@ -335,10 +331,8 @@ def run(output, *, inject_failure_after_create=False):
                       'random_sampling':False,'symbolic_execution':False,
                       'all_tiny_histories_claim':False,'workers':1}}
     write_json(res/'summary.json',summary)
-    measurement={'wall_seconds':time.monotonic()-begin_wall,'cpu_seconds':time.process_time()-begin_cpu,
-                 'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
-                 'measurement_scope':'single pilot process; includes mutations, independent oracles and output writing',
-                 'workers':1,'child_processes':0,'cpu_limit_seconds':30,'virtual_memory_limit_bytes':768*1024*1024}
+    measurement=snapshot(begin_cpu, begin_wall, limits,
+        measurement_scope='single pilot process; includes mutations, independent oracles and output writing')
     write_json(res/'measurement.json',measurement)
     print(json.dumps({'summary':summary,'measurement':measurement},indent=2,sort_keys=True))
 
