@@ -47,8 +47,11 @@ def greatest_sound_by_endpoints(safe_mask: int, n: int, k: int) -> int | None:
     _admit(n, k, safe_mask)
     candidates = [mask for mask in endpoint_union_masks(n, k)
                   if mask & ~safe_mask == 0]
-    return next((mask for mask in candidates
-                 if all(other & ~mask == 0 for other in candidates)), None)
+    union = 0
+    for mask in candidates:
+        union |= mask
+    # A greatest candidate, if present, equals the union of all candidates.
+    return union if union in candidates else None
 
 
 def component_count(mask: int, n: int) -> int:

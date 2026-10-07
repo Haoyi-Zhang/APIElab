@@ -32,6 +32,8 @@ Expected completion conditions:
 
 Timing and maximum resident memory are recorded but intentionally excluded from byte equality.
 
+The retained full-campaign test count above is historical, not a claim that the current expanded suite has been rerun. The focused guard check is `python -B -m unittest discover -s tests -p 'test_guard*.py' -v`: four current selection tests and two existing zero-interval tests. Its 504 queries keep the 378 positive-interval campaign queries separate from 126 zero-interval checks; no timing comparison is made.
+
 JSON/JSONL files use fixed LF line endings on every platform; CSV retains its explicit dialect. The measured Windows campaign records and raw test log are in `results/windows-20261006/`. Historical Unix measurements are retained separately and are not attributed to this run. Peak memory is a process-lifetime observation, not an aggregate over child processes.
 
 Useful direct checks:
@@ -74,7 +76,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - `compatibility/uniform.py` produces policies/conflicts; `uniform_check.py` independently validates complete policy supports and deletion witnesses.
 - `compatibility/succinct_campaign.py` uses scalar circuit evaluation; `succinct_check.py` checks complete policies with packed truth vectors.
 - `compatibility/cases.py`, `scholarly.py`, and independent closed-form/direct oracles construct expected answers without invoking the client producer.
-- `compatibility/guards.py` enumerates endpoint-interval unions without calling the separate component-count oracle.
+- `compatibility/guards.py` keeps endpoint-interval enumeration and selects a greatest sound candidate by union membership, without calling the separate component-count oracle. `tests/test_guard_selection.py` retains a set-based pairwise reference with separately enumerated interval combinations, covering all 504 queries for n=1..6 and k=0..3. The frozen 378-query campaign and its 306/72 split are unchanged; this is not a measured speedup.
 - `reproduce.py` and `reproduce_succinct.py` regenerate and compare declared deterministic files.
 
 “Independent” here means separate code paths, not independent people or organizations. The same development process produced the code and prose, so correlated conceptual errors remain possible.
