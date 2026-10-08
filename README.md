@@ -26,13 +26,13 @@ The two output directories must not already exist. The public commands exercise 
 
 Expected completion conditions:
 
-- **65 tests** run; the Windows-limit test is skipped on non-Windows systems;
+- **69 tests** are discovered in the current suite; the Windows-limit test is skipped on non-Windows systems;
 - semantic reproduction reports **14/14 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
 - succinct reproduction reports **7/7 exact file matches** and rechecks all **6,280** structure certificates.
 
 Timing and maximum resident memory are recorded but intentionally excluded from byte equality.
 
-The retained full-campaign test count above is historical, not a claim that the current expanded suite has been rerun. The focused guard check is `python -B -m unittest discover -s tests -p 'test_guard*.py' -v`: four current selection tests and two existing zero-interval tests. Its 504 queries keep the 378 positive-interval campaign queries separate from 126 zero-interval checks; no timing comparison is made.
+The retained full-campaign run contains 65 tests. A separate Windows/Python 3.12.14 unit-test run passes all 69 current tests without repeating that campaign. The focused guard check is `python -B -m unittest discover -s tests -p 'test_guard*.py' -v`: four current selection tests and two existing zero-interval tests. Its 504 queries keep the 378 positive-interval campaign queries separate from 126 zero-interval checks; no timing comparison is made.
 
 JSON/JSONL files use fixed LF line endings on every platform; CSV retains its explicit dialect. The measured Windows campaign records and raw test log are in `results/windows-20261006/`. Historical Unix measurements are retained separately and are not attributed to this run. Peak memory is a process-lifetime observation, not an aggregate over child processes.
 
@@ -84,7 +84,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Repository map
 
 - `compatibility/`: semantics, producers, checkers, oracles, campaigns, reproduction drivers
-- `tests/`: 65 unit and finite regression tests
+- `tests/`: 69 unit and finite regression tests
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary
