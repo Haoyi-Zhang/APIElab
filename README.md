@@ -24,15 +24,26 @@ python -m compatibility.reproduce_succinct --output /tmp/epc-circuit-reproductio
 
 The two output directories must not already exist. The public commands exercise CLI wrappers, which call the campaign functions in the same Python process. Unit tests also call those functions directly and separately check CLI argument parsing. Exclusive creation prevents stale output from being reused. An existing path is never modified; if a fresh run fails after creation, its fresh path and any partial diagnostic output are retained rather than silently removed.
 
+The manuscript's canonical-command presentation uses the following equivalent
+placeholder paths, retained here verbatim for command-level reproduction:
+
+```sh
+python -m unittest discover -s tests -v
+python -m compatibility.reproduce --output OUT-SEMANTIC
+python -m compatibility.reproduce_succinct --output OUT-SUCCINCT
+```
+
+Run from this artifact root; both placeholder output directories must be new.
+
 Expected completion conditions:
 
-- **69 tests** are discovered in the current suite; the Windows-limit test is skipped on non-Windows systems;
+- **77 tests** are discovered in the current suite; the Windows-limit test is skipped on non-Windows systems;
 - semantic reproduction reports **14/14 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
 - succinct reproduction reports **7/7 exact file matches** and rechecks all **6,280** structure certificates.
 
 Timing and maximum resident memory are recorded but intentionally excluded from byte equality.
 
-The retained full-campaign run contains 65 tests. A separate Windows/Python 3.12.14 unit-test run passes all 69 current tests without repeating that campaign. The focused guard check is `python -B -m unittest discover -s tests -p 'test_guard*.py' -v`: four current selection tests and two existing zero-interval tests. Its 504 queries keep the 378 positive-interval campaign queries separate from 126 zero-interval checks; no timing comparison is made.
+The retained full-campaign run contains 65 tests; a later separate Windows/Python 3.12.14 run covered the 69-test suite before the adapter/group additions. The current suite adds four polarity-elaboration tests and four tiny group-CNF tests outside the frozen campaign denominators. Their focused command is `python -B -m unittest tests.test_elaboration tests.test_group_constraints -v`. The focused guard check is `python -B -m unittest discover -s tests -p 'test_guard*.py' -v`: four selection tests and two zero-interval tests. Its 504 queries keep the 378 positive-interval campaign queries separate from 126 zero-interval checks; no timing comparison is made.
 
 JSON/JSONL files use fixed LF line endings on every platform; CSV retains its explicit dialect. The measured Windows campaign records and raw test log are in `results/windows-20261006/`. Historical Unix measurements are retained separately and are not attributed to this run. Peak memory is a process-lifetime observation, not an aggregate over child processes.
 
@@ -51,6 +62,10 @@ The base language has Boolean values and loop-free terms: return, calls with exp
 The reference state must succeed on all admitted inputs. A version is fixed-client compatible exactly when every input produces the same successful result and event word as the fixed reference. Candidate-side `missing_api` and `missing_default` outcomes are incompatibility witnesses and retain prior event prefixes; malformed inputs, reference faults, and cap violations yield no conclusion. Uniform elaboration separately supplies a finite choice relation and an observation partition; versions in one partition block must share a choice. The compact extension represents compatibility predicates as acyclic total Boolean circuits and keeps the quantifier order `exists common choice, for all runtime inputs`.
 
 Admission caps are 32 states, 64 declarations, 24 call sites, 256 syntax nodes, depth 40, trace length 20, and 6,000 certificate nodes. Cap violations yield no compatibility conclusion.
+
+The authored logical-request example adds a small elaboration helper, not a source-language front end. `elaboration.py` emits one explicit `decode` call, with either the source expression or its negation. For a supplied target polarity `s_v`, the result is `source XOR a XOR s_v`; preservation on every input holds exactly when the fixed adapter polarity `a` equals `s_v`. The test reference executes the source operation independently of that choice. The adapter itself cannot inspect versions, probe with extra calls, or drop the call.
+
+For no-input circuits, `group_constraints.py` translates each version output to one atomic CNF group with private gate variables and shared choice variables. It preserves every feasible label subset, so greatest-region existence is exactly unique group-MSS existence. There are no background clauses; runtime-input circuits are rejected rather than being given incorrectly constant gate witnesses. The tests enumerate every subset and projected choice for three tiny circuits, including an internally inconsistent group and duplicate version labels. These checks neither enlarge the 6,280-instance campaign nor establish the general proof.
 
 ## Frozen campaign
 
@@ -77,6 +92,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - `compatibility/succinct_campaign.py` uses scalar circuit evaluation; `succinct_check.py` checks complete policies with packed truth vectors.
 - `compatibility/cases.py`, `scholarly.py`, and independent closed-form/direct oracles construct expected answers without invoking the client producer.
 - `compatibility/guards.py` keeps endpoint-interval enumeration and selects a greatest sound candidate by union membership, without calling the separate component-count oracle. `tests/test_guard_selection.py` retains a set-based pairwise reference with separately enumerated interval combinations, covering all 504 queries for n=1..6 and k=0..3. The frozen 378-query campaign and its 306/72 split are unchanged; this is not a measured speedup.
+- `compatibility/elaboration.py` and `group_constraints.py` implement the restricted polarity adapter and no-input group translation; their eight tests remain separate from frozen campaign counts.
 - `reproduce.py` and `reproduce_succinct.py` regenerate and compare declared deterministic files.
 
 “Independent” here means separate code paths, not independent people or organizations. The same development process produced the code and prose, so correlated conceptual errors remain possible.
@@ -84,7 +100,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Repository map
 
 - `compatibility/`: semantics, producers, checkers, oracles, campaigns, reproduction drivers
-- `tests/`: 69 unit and finite regression tests
+- `tests/`: 77 unit and finite regression tests
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary
