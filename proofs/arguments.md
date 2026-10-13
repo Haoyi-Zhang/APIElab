@@ -88,6 +88,40 @@ If every selectable unit is a nonempty CNF clause, all singletons are satisfiabl
 
 MSS counting via projected model counting is an established adjacent problem; Bendik and Meel, *Counting Maximal Satisfiable Subsets*, AAAI 2021, Definitions 1-2 and Proposition 1: https://doi.org/10.1609/aaai.v35i5.16481. Here the question is uniqueness with atomic version groups, not the invention of a satisfiable-subset geometry or a new counting algorithm.
 
+### Quantifier-preserving grouped encoding with runtime inputs
+
+Keep the original choice bits a before the universal input bits x. Make a private
+gate tuple h_i for each version, and let its atomic group G_i contain every gate
+equivalence and its asserted output, including h_(i,k) iff x_j for an input gate.
+There are no background clauses. For every fixed a and selected label subset S,
+
+    forall x: conjunction_(i in S) C_i(a,x)
+      iff forall x exists (h_i)_(i in S): conjunction_(i in S) G_i(a,x,h_i).
+
+**Proof.** Fix a,x. Induction in gate order forces the unique deterministic gate
+evaluation; an asserted group output is satisfiable exactly when C_i(a,x)=1.
+Private gate tuples of distinct groups can be combined without interference.
+Quantify this pointwise equivalence over x while leaving a fixed. The empty label
+subset has no clauses and accepts every original choice. Each selected group is
+still atomic; the graph-copy size bound is polynomial. Thus exists a / forall x /
+exists h preserves every feasible subset and its original-choice projection. End.
+
+These trailing witnesses do not enlarge the adapter grammar: only determined
+gate values, not the original a, can depend on x. Hoisting h before x incorrectly
+rejects x OR NOT x, since its input gate would have to hold both input values.
+Moving a after x incorrectly accepts a=x, which has no fixed universally working
+choice. Its correct support is empty, so its greatest region is still empty;
+testing only the decision bit would miss the viability error.
+
+The separate `quantified_groups` entry point and six named tiny controls retain
+the actual clauses, prefix and every label-subset/choice projection. A bounded
+clause/prefix interpreter reads no circuit gates; its projections agree with the
+scalar and packed-vector circuit paths. Opposite-choice groups, all operators,
+empty regions and duplicate labels are also checked. `no_input_groups` retains
+its old layout and runtime-input rejection. This standard definitional encoding
+does not turn the quantified problem into ordinary SAT, classify arbitrary
+three-alternation QBFs, or add cases to the frozen 1230/6280 campaigns.
+
 ### A semantics-derived polarity adapter
 
 The source operation request e returns the value of a pure Boolean expression e. At version v the supplied pure target API decode(b) returns b XOR s_v. The permitted elaborator chooses a in {0,1} before runtime input and emits a single decode call on e if a=0 and not e if a=1, then returns its result. Its grammar retains that call; removing it, probing with more calls, or synthesizing a version test is not in this choice space. Bind the result to a fresh variable. Expression purity and the call rule give output eval(e,rho) XOR a XOR s_v with empty trace, for every well-scoped e and Boolean environment rho. Equality with the source output holds exactly when a=s_v. On a nonempty input domain this is also equivalent to universal source preservation. This is an elementary elaboration-preservation lemma, not a general front-end correctness theorem.
@@ -144,12 +178,16 @@ The support of individually viable versions is {R,D_0,D_1,...,D_K}. This support
 
 Universal-domain equality of each component is a sufficient compositional rule, by substitution and associativity of trace concatenation, but is not necessary as the first example shows. Checking only an initial input domain need not be sufficient. With initial input set {0}, take f_0=f_1=constant one, g_0=identity, g_1=constant zero. Each local comparison on {0} passes. The composed programs return one and zero, respectively. The continuation obligation must cover the reached intermediate values, not merely the initial input domain.
 
-A full paired-state transformer is an exact, but standard, repair: it carries both intermediate values and both event prefixes, updates the paired state with both calls, and compares only complete observations. Determinism gives ordinary relational composition. This does not establish a new relational program logic.
+A full paired-state transformer carries both intermediate values and both event prefixes, updates the paired state with both calls, and compares complete observations. This standard relational composition supplies an exact semantic baseline.
 
 **Proposition 19 (finite versions do not ensure decidability).** In an extension admitting arbitrary unbounded computation in a default or API, no total algorithm can always decide exact successful-termination compatibility, even with two versions and a singleton input domain.
 
 **Proof.** The reference returns zero. The candidate first simulates an arbitrary machine M on its fixed input, then returns zero if the simulation terminates. It is compatible exactly when M terminates. A total exact compatibility decider would decide the halting problem. Its semantic safe set still exists as a mathematical subset; it is its effective computation that fails. This argument requires unbounded computation, not merely the syntactic presence of a feature called reflection. End.
 
-## 7. What the finite evidence establishes
+## 7. Finite checks and complete reproduction
 
-The principal semantic campaign checks exactly 1,230 cases: 600 exhaustive instances of the first Boolean truth-table grammar, 600 exhaustive default/effect instances of a second frozen grammar, and 30 hand-authored source-mapped scholarly projections. Sixteen additional regression controls are executed outside that denominator. The projections test representation paths only; they do not reproduce source apps, tools, devices, or prevalence. Uniform matrices, composition quadruples, and guards have their own explicitly stated finite families. The initial-zero local composition rule has 16 false acceptances on input domain {0} and 32 on {0,1}, among the same 256 quadruples. The succinct campaign checks every common choice and input for 6,280 generated circuit histories and compares scalar generation, packed-vector checking, and a direct source-query oracle. Its 3,140 positive and 3,140 negative answers follow the balanced enumeration of postprocessing truth tables, not a prevalence estimate. The additional structure replay checks Corollary 16 on every retained circuit after rechecking its complete support certificate. Sixty-five tests and reproduction compare 14 semantic and seven compact deterministic files byte for byte on Windows. The compact controls also check q=1 and q=2 at K=0 and K=2q+1, including the always-false T_(2q+2) sentinel. The proofs above, rather than these finite counts, justify the mathematical statements. No generalized source-language verifier, industrial scalability result, proof-assistant assurance, deployed-app claim, or independent human validation is asserted.
+The principal semantic campaign checks exactly 1,230 cases: 600 exhaustive instances of the first Boolean truth-table grammar, 600 exhaustive default/effect instances of a second frozen grammar, and 30 hand-authored source-mapped scholarly projections. Sixteen additional regression controls have a separate denominator. The scholarly projections exercise representation paths using authored finite models. Uniform matrices, composition quadruples, and guards have their own explicitly stated finite families. The initial-zero local composition rule has 16 false acceptances on input domain {0} and 32 on {0,1}, among the same 256 quadruples.
+
+The succinct campaign checks every common choice and input for 6,280 generated circuit histories and compares scalar generation, packed-vector checking, and a direct source-query oracle. Its 3,140 positive and 3,140 negative answers follow the balanced enumeration of postprocessing truth tables. The structure replay checks Corollary 16 on every retained circuit after rechecking its complete support certificate. Compact controls check q=1 and q=2 at K=0 and K=2q+1, including the always-false T_(2q+2) sentinel.
+
+The current Windows reproduction executes eight owned commands, including all 87 unit tests, byte-for-byte comparisons of 14 semantic and seven compact deterministic files, and the six grouped-encoding controls with 16 label-subset projections. The command receipt, hardware observations, and raw logs are in results/complete-replay/. The group controls separately distinguish pointwise gate witnesses from adaptive original elaboration choices. These finite checks test the implementation and reductions; the ordinary proofs above establish the general statements. Native source-language translation and mechanization are separate extensions.

@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-m",
+    "compatibility.group_controls",
+    "--output",
+    "D:\\CodexProjects\\wg-check\\substantive-library\\P009\\artifact\\results\\group-encoding"
+  ],
+  "platform": "Windows-11-10.0.28000-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "sources": {
+    "compatibility/group_constraints.py": "3e186b4493bd9bb7fa3a74b874412c8344b78229f6c0b16aa8db4e52dbe0309e",
+    "compatibility/group_controls.py": "95af74cdbb0077dac100bfa25819fa0d1ddbf549a4b4b2ef1073678cdd759aac",
+    "compatibility/succinct.py": "1d1af92b6d536d4be2ff98229ac1005ab5495cb1f4de0b81954a999bd41a4710",
+    "compatibility/succinct_check.py": "faff05232faf5fdf2a85f5673fcef6c42e4cadf42e92803dbd45727a6396eac8",
+    "tests/test_group_constraints.py": "932fda2ef1923aefa611fe48112de01695e962d1cb66b145e228e511737c1dce",
+    "tests/test_group_quantifiers.py": "7590d85ac6b716814e3c5410db10c9fa873fca537e7d3da11fce3d01502f10db"
+  }
+}

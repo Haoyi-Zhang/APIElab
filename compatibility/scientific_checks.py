@@ -1,6 +1,6 @@
 """Bounded complete local campaign, retained fixtures and raw command logs.
 
-No network, downloads, installs, shell, or deletion. Each of seven owned child
+No network, downloads, installs, shell, or deletion. Each of eight owned child
 commands has a 180-second wall timeout. Individual scientific campaigns keep
 their own measured CPU/RSS records; this driver reports command wall time only.
 """
@@ -29,7 +29,43 @@ def commands(output):
                            'inputs/example.json', str(output/'example_certificate.json')]),
         ('example-fresh-check', ['-m', 'compatibility.cli', 'check',
                                  'inputs/example.json', str(output/'example_certificate.json')]),
+        ('group-quantifiers', ['-m', 'compatibility.group_controls',
+                              '--output', str(output/'group-encoding')]),
     ]
+
+
+def hardware_metadata():
+    """Read the current host; unknown hardware is not inferred from old logs."""
+    result = {'models': [], 'source': None, 'physical_cores': None,
+              'logical_processors': os.cpu_count(),
+              'available_affinity_processors': None}
+    if hasattr(os, 'sched_getaffinity'):
+        try:
+            result['available_affinity_processors'] = len(os.sched_getaffinity(0))
+        except OSError:
+            pass
+    if sys.platform.startswith('linux'):
+        try:
+            lines = Path('/proc/cpuinfo').read_text(encoding='utf-8').splitlines()
+            result['models'] = sorted({line.split(':', 1)[1].strip() for line in lines
+                                      if ':' in line and line.split(':', 1)[0].strip()
+                                      in {'model name', 'Hardware'}
+                                      and line.split(':', 1)[1].strip()})
+            result['source'] = '/proc/cpuinfo'
+        except OSError:
+            pass
+    elif sys.platform == 'win32':
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE,
+                                r'HARDWARE\DESCRIPTION\System\CentralProcessor\0') as key:
+                name, _kind = winreg.QueryValueEx(key, 'ProcessorNameString')
+            if type(name) is str and name.strip():
+                result['models'] = [name.strip()]
+                result['source'] = 'Windows ProcessorNameString'
+        except OSError:
+            pass
+    return result
 
 
 def run(output):
@@ -45,7 +81,8 @@ def run(output):
                APIELAB_TEST_TMP=str(test_tmp), TMP=str(test_tmp), TEMP=str(test_tmp))
     report = {'python': sys.version, 'python_executable': sys.executable,
               'platform': platform.platform(), 'machine': platform.machine(),
-              'command_timeout_seconds': 180, 'maximum_child_commands': 7,
+              'hardware': hardware_metadata(),
+              'command_timeout_seconds': 180, 'maximum_child_commands': len(commands(output)),
               'test_fixtures_retained': True, 'commands': [], 'complete': False}
     def save():
         (output/'campaign.json').write_text(json.dumps(report, indent=2, sort_keys=True) + '\n',

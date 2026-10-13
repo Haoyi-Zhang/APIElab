@@ -1,0 +1,1 @@
+{"accepted_input": true, "counts": {"ast_nodes": 3, "call_sites": 1, "certificate_nodes": 12, "declarations": 3, "evaluation_steps": 24, "executions": 6, "max_trace": 1, "states": 3}}

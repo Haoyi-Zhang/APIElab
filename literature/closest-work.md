@@ -1,6 +1,6 @@
-# Closest-work adversarial comparison
+# Related representations and closest methods
 
-This note records the research lock rather than a citation inventory. The full 12+5+5 calibration matrix is in `calibration.csv`. The comparison below asks whether the paper's strongest claim is already a standard instance of an existing theorem.
+This note compares the representations and semantic obligations used in the manuscript. The selected-source comparison is in `calibration.csv`. The main distinctions are fixed versus shared choices, atomic labels versus individual clauses, and compact behavior versus explicit finite tables.
 
 ## 1. Fixed clients and principal regions
 
@@ -8,7 +8,7 @@ For a fixed deterministic terminating client, the exact safe set is the set of v
 
 ## 2. Uniform choices and satisfiable-subset geometry
 
-For one observation block, each version induces a finite set of choices that satisfy all of its obligations. Realizable regions are therefore the satisfiable subsets of a monotone constraint family. The criterion “a greatest region exists iff every individually viable constraint is jointly satisfiable” is elementary. Minimal obstructions are ordinary minimal unsatisfiable subsets, and maximal regions are ordinary maximal satisfiable subsets. MARCO-style MUS/MSS enumeration, model-based diagnosis, QuickXplain, MaxSAT, and monotone dualization own this general geometry. The paper does **not** claim a new MUS/MSS algorithm, diagnosis framework, or conflict-minimization method.
+For one observation block, each version induces a finite set of choices that satisfy all of its obligations. Realizable regions are therefore the satisfiable subsets of a monotone constraint family. The criterion “a greatest region exists iff every individually viable constraint is jointly satisfiable” is elementary. Minimal obstructions are ordinary minimal unsatisfiable subsets, and maximal regions are ordinary maximal satisfiable subsets. MARCO-style MUS/MSS enumeration, model-based diagnosis, QuickXplain, MaxSAT, and monotone dualization own this general geometry. These are established geometric and algorithmic foundations for the shared-choice question.
 
 The retained language-level contribution is narrower: (i) the exact quantifier separation between a fixed API elaboration and an observation-uniform elaboration, (ii) a certificate format that cannot misreport an individually viable state as intrinsically impossible, and (iii) an embedding showing that the decision about a greatest region remains parallel-oracle complete for one pure API call even when negative instances have only two maximal regions and a two-state obstruction.
 
@@ -16,9 +16,19 @@ This is exactly unique-MSS existence in the finite family, not just an analogy: 
 
 Atomic groups must not be flattened into independently selectable clauses. For nonempty clauses with no background, every singleton is satisfiable, and uniqueness is equivalent to SAT of the complete CNF. Under a promise that every group is individually satisfiable, uniqueness likewise reduces to SAT of their conjunction. Arbitrary version groups need not satisfy that promise. Bendik and Meel's *Counting Maximal Satisfiable Subsets* (AAAI 2021, https://doi.org/10.1609/aaai.v35i5.16481) studies clausal MSS counting through projected model counting. The manuscript now credits both representations and presents the subset-preserving equivalence; it makes no priority claim that an equivalent uniqueness classification is absent from other terminology or literature.
 
+For runtime-input circuits the separate grouped encoding uses exists original
+choice / forall input / exists private gates. Gate equivalences force the last
+block pointwise, preserving both all feasible label subsets and their original
+choice projections. This is a standard dependency-preserving definitional
+encoding, not an extension of ordinary group-MSS satisfiability or a novelty
+claim for Tseitin-style clauses. The two prefix counterexamples distinguish a
+deterministic intermediate gate value from permission to choose an adapter
+after its input. The no-input equivalence and its no-background hypotheses
+remain unchanged.
+
 ## 3. Synthesis
 
-Syntax-guided and oracle-guided synthesis already treat an implementation choice existentially against semantic examples or universally quantified inputs. The uniform default is a finite synthesis variable. Its novelty cannot be “using synthesis for compatibility.” What is specific here is the output question: not whether a total implementation exists, but whether the union of all individually satisfiable version obligations is realizable by a single implementation under the observation partition. The paper states this as a decision problem and classifies its succinct Boolean representation.
+Syntax-guided and oracle-guided synthesis already treat an implementation choice existentially against semantic examples or universally quantified inputs. The uniform default is a finite synthesis variable. The output question is whether the union of all individually satisfiable version obligations is realizable by a single implementation under the observation partition. The paper states this as a decision problem and classifies its succinct Boolean representation.
 
 The logical-request example derives compatibility from a concrete source operation and two permitted target argument encodings, rather than giving the adapter an arbitrary Boolean success circuit. Its preservation law is output = source XOR a XOR s_v, giving opposite winning sets for opposite target polarities. The allowed grammar retains one call and excludes probes or synthesized version tests. It demonstrates this restricted elaboration need, not deployed API prevalence or correctness of a general source compiler.
 
@@ -34,9 +44,9 @@ Variational programming and software-product-line analysis share representations
 
 CiD already models non-contiguous Android API lifecycles and guarded bytecode use. Taming Android Fragmentation, later empirical studies, repair systems, SemDiff, and silently evolved methods cover practical detection, migration, or prevalence questions. This project supplies exact finite behavior rather than inferring it from Android code or metadata. Its 30 scholarly cases are hand-authored projections used to exercise semantic categories; they are not replications, extracted benchmarks, or evidence of prevalence.
 
-## 7. Research-lock decision
+## 7. Result and representation
 
-The project is locked on the following proportional claim:
+The manuscript's central result is:
 
 > In a finite version-indexed client calculus, fixed semantic compatibility, guard expressibility, and observation-uniform elaboration have different principal objects and different witnesses. For succinct Boolean behavior, deciding whether the uniform family has a greatest region is complete for nonadaptive parallel SAT queries, or for nonadaptive parallel existential-universal SAT queries with runtime inputs; the lower bound embeds in one pure call and still has at most two maximal regions.
 

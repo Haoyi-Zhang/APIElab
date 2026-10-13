@@ -1,0 +1,15 @@
+{
+  "deterministic_files_compared": [
+    "cases.jsonl",
+    "circuits.jsonl",
+    "certificates.jsonl",
+    "per_case.csv",
+    "summary.json",
+    "negative_controls.json",
+    "structure.jsonl"
+  ],
+  "exact_matches": 7,
+  "general_proof_claim": false,
+  "measurement_values_compared": false,
+  "structure_cases": 6280
+}

@@ -8,13 +8,13 @@ The repository is complete for the declared bounded evidence. It is not a proof-
 
 Use Python 3.10 or newer. The full finite campaign was rerun on Windows 11 AMD64 with CPython 3.12.14. Linux uses `resource` for CPU/address-space limits and peak RSS. Windows obtains the current process's real peak working set through `GetProcessMemoryInfo`; it records CPU/address-space limits as unavailable. No third-party package, network access, GPU, solver, model API, paper directory, or external service is required.
 
-The complete bounded driver (seven owned commands, at most 180 wall seconds each) is:
+The complete bounded driver (eight owned commands, at most 180 wall seconds each) is:
 
 ```sh
 python -B -m compatibility.scientific_checks --output FRESH-OUTPUT
 ```
 
-It retains raw stdout/stderr, actual command results, environment metadata, test fixtures and fresh campaign output. Set `PYTHONUTF8=1` and `PYTHONDONTWRITEBYTECODE=1`. The supplied Linux workflow uses Python 3.12, a 30-minute job bound, a fresh `RUNNER_TEMP` directory, and pinned actions; it is prepared for execution, not evidence of a completed CI run.
+It retains raw stdout/stderr, actual command results, current hardware/environment metadata, test fixtures and fresh campaign output. The eighth command separately emits the quantified-group controls and their source bindings. Set `PYTHONUTF8=1` and `PYTHONDONTWRITEBYTECODE=1`. The Linux workflow uses Python 3.12, a 30-minute job bound, a fresh `RUNNER_TEMP` directory, and pinned actions. A source-bound local run is described in `results/complete-replay/`; current remote CI is checked independently.
 
 ```sh
 python -m unittest discover -s tests -v
@@ -37,7 +37,7 @@ Run from this artifact root; both placeholder output directories must be new.
 
 Expected completion conditions:
 
-- **77 tests** are discovered in the current suite; the Windows-limit test is skipped on non-Windows systems;
+- **87 tests** are defined in the current suite; the Windows-limit test is skipped on non-Windows systems;
 - semantic reproduction reports **14/14 exact file matches**, reexecutes the example and boundary fixtures, and confirms the boundary counts;
 - succinct reproduction reports **7/7 exact file matches** and rechecks all **6,280** structure certificates.
 
@@ -67,6 +67,32 @@ The authored logical-request example adds a small elaboration helper, not a sour
 
 For no-input circuits, `group_constraints.py` translates each version output to one atomic CNF group with private gate variables and shared choice variables. It preserves every feasible label subset, so greatest-region existence is exactly unique group-MSS existence. There are no background clauses; runtime-input circuits are rejected rather than being given incorrectly constant gate witnesses. The tests enumerate every subset and projected choice for three tiny circuits, including an internally inconsistent group and duplicate version labels. These checks neither enlarge the 6,280-instance campaign nor establish the general proof.
 
+The separate `quantified_groups` entry point preserves runtime-input dependencies
+with the prefix `exists original choice / forall input / exists private gates`.
+Gate equivalences determine the last block pointwise; the adapter choice stays
+fixed. Hoisting gate witnesses wrongly rejects `x OR NOT x`; allowing the original
+choice after the input wrongly accepts `a=x`. The latter has empty correct
+support and a greatest empty region, so controls inspect the support and every
+label-subset choice projection, not only the greatest-region bit. This is standard
+definitional encoding, not ordinary group-CNF SAT or a solver implementation.
+
+Run the six named finite controls into a fresh directory:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python -B -m compatibility.group_controls --output FRESH-GROUP-OUTPUT
+python -B -m unittest tests.test_group_constraints tests.test_group_quantifiers -v
+```
+
+On PowerShell use `$env:PYTHONDONTWRITEBYTECODE='1'` before the commands. The
+retained semantic receipt is `results/group-encoding/controls.json`, with its
+summary and source/environment bindings alongside it. It contains the actual
+circuits, grouped clauses, prefixes, circuit certificates and all 16 label-subset
+projections of these six authored controls. Both deliberately wrong prefixes are
+distinguished. The complete Windows/Python 3.12.14 run in
+`results/complete-replay/` passes all 87 current tests, including these controls,
+then emits the grouped receipts as a separate eighth command. Historical
+measurements and the 1,230/6,280 denominators remain separate and unchanged.
+
 ## Frozen campaign
 
 | Family | Exact scope | Result |
@@ -92,7 +118,7 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - `compatibility/succinct_campaign.py` uses scalar circuit evaluation; `succinct_check.py` checks complete policies with packed truth vectors.
 - `compatibility/cases.py`, `scholarly.py`, and independent closed-form/direct oracles construct expected answers without invoking the client producer.
 - `compatibility/guards.py` keeps endpoint-interval enumeration and selects a greatest sound candidate by union membership, without calling the separate component-count oracle. `tests/test_guard_selection.py` retains a set-based pairwise reference with separately enumerated interval combinations, covering all 504 queries for n=1..6 and k=0..3. The frozen 378-query campaign and its 306/72 split are unchanged; this is not a measured speedup.
-- `compatibility/elaboration.py` and `group_constraints.py` implement the restricted polarity adapter and no-input group translation; their eight tests remain separate from frozen campaign counts.
+- `compatibility/elaboration.py` and `group_constraints.py` implement the restricted polarity adapter and atomic group translations; their eight earlier tests and six quantified-prefix controls remain separate from frozen campaign counts.
 - `reproduce.py` and `reproduce_succinct.py` regenerate and compare declared deterministic files.
 
 “Independent” here means separate code paths, not independent people or organizations. The same development process produced the code and prose, so correlated conceptual errors remain possible.
@@ -100,12 +126,12 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 ## Repository map
 
 - `compatibility/`: semantics, producers, checkers, oracles, campaigns, reproduction drivers
-- `tests/`: 77 unit and finite regression tests
+- `tests/`: 87 unit and finite regression tests
 - `inputs/`: exact generated/authored inputs, source mapping, fixtures
 - `results/`: retained raw results, certificates, summaries, scoped measurements, reproduction records
 - `proofs/arguments.md`: complete ordinary mathematical arguments and evidence boundary
 - `literature/calibration.csv`: 22 related-work comparisons (11 TOPLAS, one PLDI framework, five foundational/synthesis, five API-compatibility)
-- `literature/closest-work.md`: adversarial research-lock decision
+- `literature/closest-work.md`: closest representation and synthesis comparisons
 - `claim_evidence_ledger.csv`: material claim-to-proof/result mapping
 - `external_resources.csv`: scholarly/official provenance and integration mode
 - `resource_accounting.csv`: scoped measured runs; not a reconstructed conversation total

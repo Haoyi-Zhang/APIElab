@@ -1,0 +1,140 @@
+{
+  "command_timeout_seconds": 180,
+  "commands": [
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "name": "unit-tests",
+      "returncode": 0,
+      "tests_run": 87,
+      "timed_out": false,
+      "wall_seconds": 1.1559999999881256
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.reproduce",
+        "--output",
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\private\\substantive_library_completion\\P009\\coordinator-complete-group-campaign\\semantic"
+      ],
+      "name": "semantic",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 2.125
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.reproduce_succinct",
+        "--output",
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\private\\substantive_library_completion\\P009\\coordinator-complete-group-campaign\\succinct"
+      ],
+      "name": "succinct",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 17.79700000002049
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/example.json",
+        "results/example_certificate.json"
+      ],
+      "name": "example-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.0629999999946449
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/boundary_case.json",
+        "results/boundary_certificate.json"
+      ],
+      "name": "boundary-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "infer",
+        "inputs/example.json",
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\private\\substantive_library_completion\\P009\\coordinator-complete-group-campaign\\example_certificate.json"
+      ],
+      "name": "example-infer",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.046000000002095476
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.cli",
+        "check",
+        "inputs/example.json",
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\private\\substantive_library_completion\\P009\\coordinator-complete-group-campaign\\example_certificate.json"
+      ],
+      "name": "example-fresh-check",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.046999999991385266
+    },
+    {
+      "command": [
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+        "-B",
+        "-m",
+        "compatibility.group_controls",
+        "--output",
+        "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\private\\substantive_library_completion\\P009\\coordinator-complete-group-campaign\\group-encoding"
+      ],
+      "name": "group-quantifiers",
+      "returncode": 0,
+      "timed_out": false,
+      "wall_seconds": 0.11000000001513399
+    }
+  ],
+  "complete": true,
+  "hardware": {
+    "available_affinity_processors": null,
+    "logical_processors": 20,
+    "models": [
+      "12th Gen Intel(R) Core(TM) i7-12700KF"
+    ],
+    "physical_cores": null,
+    "source": "Windows ProcessorNameString"
+  },
+  "machine": "AMD64",
+  "maximum_child_commands": 8,
+  "platform": "Windows-11-10.0.28000-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "python_executable": "D:\\CodexProjects\\2026-07-13\\new-chat-4\\completion_workspace\\library_review\\pdf-env\\Scripts\\python.exe",
+  "test_fixtures_retained": true
+}

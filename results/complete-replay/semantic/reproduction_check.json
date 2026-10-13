@@ -1,0 +1,26 @@
+{
+  "boundary_counts_exact": true,
+  "deterministic_files_compared": [
+    "inputs/control_expectations.json",
+    "inputs/scholarly_case_sources.json",
+    "inputs/scholarly_expectations.json",
+    "inputs/semantic_cases.jsonl",
+    "inputs/uniform_problems.jsonl",
+    "results/composition.jsonl",
+    "results/guard_queries.jsonl",
+    "results/observation_sensitivity.json",
+    "results/partition_refinement.jsonl",
+    "results/semantic_certificates.jsonl",
+    "results/semantic_results.csv",
+    "results/summary.json",
+    "results/uniform_certificates.jsonl",
+    "results/uniform_results.jsonl"
+  ],
+  "exact_matches": 14,
+  "fixtures_reexecuted": [
+    "example",
+    "boundary"
+  ],
+  "general_proof_claim": false,
+  "measurement_values_compared": false
+}

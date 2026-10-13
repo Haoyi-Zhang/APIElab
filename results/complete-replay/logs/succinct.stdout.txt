@@ -1,0 +1,80 @@
+{
+  "measurement": {
+    "affinity_cpu_count": null,
+    "child_processes": 0,
+    "cpu_limit_seconds": null,
+    "cpu_seconds": 15.875,
+    "measurement_scope": "scalar campaign including direct oracles, mutations and output writing",
+    "peak_rss_kib": 18816.0,
+    "platform": "Windows-11-10.0.28000-SP0",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "rss_scope": "process lifetime peak, not a process-tree aggregate",
+    "rss_source": "GetProcessMemoryInfo.PeakWorkingSetSize",
+    "virtual_memory_limit_bytes": null,
+    "wall_seconds": 16.5,
+    "workers": 1
+  },
+  "summary": {
+    "cases": 6280,
+    "checker_including_three_mutations_per_case": {
+      "bitvector_gate_steps": 3925520,
+      "local_truth_assignments": 2234496,
+      "output_truth_assignments": 15895168
+    },
+    "construction_boundary_checks": 4,
+    "counts": {
+      "constant": 2120,
+      "greatest_exists": 3140,
+      "no_greatest": 3140,
+      "quantified": 4160,
+      "rejected_flip_decision": 6280,
+      "rejected_omit_policy": 6280,
+      "rejected_wrong_identifier": 6280,
+      "scalar_gate_steps": 74364816,
+      "scalar_global_assignments": 558624,
+      "scalar_version_evaluations": 3973792
+    },
+    "fixed_selection_truth_table": {
+      "s": 0,
+      "u": 0
+    },
+    "maxima": {
+      "a_bits": 5,
+      "gates": 244,
+      "history_states": 9,
+      "x_bits": 2
+    },
+    "negative_controls": 3,
+    "oracle_mismatches": 0,
+    "scope": "exhaustive stated truth-table families; scalar whole-policy enumeration and independent truth-vector checks; not a mechanized asymptotic proof"
+  }
+}
+{
+  "measurement": {
+    "child_processes": 0,
+    "cpu_seconds": 17.109375,
+    "peak_rss_kib": 51784.0,
+    "platform": "Windows-11-10.0.28000-SP0",
+    "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "rss_scope": "process lifetime peak, not a process-tree aggregate",
+    "rss_source": "GetProcessMemoryInfo.PeakWorkingSetSize",
+    "scope": "full regeneration, mutations, structure replay and exact comparison",
+    "wall_seconds": 17.76500000001397,
+    "workers": 1
+  },
+  "reproduction": {
+    "deterministic_files_compared": [
+      "cases.jsonl",
+      "circuits.jsonl",
+      "certificates.jsonl",
+      "per_case.csv",
+      "summary.json",
+      "negative_controls.json",
+      "structure.jsonl"
+    ],
+    "exact_matches": 7,
+    "general_proof_claim": false,
+    "measurement_values_compared": false,
+    "structure_cases": 6280
+  }
+}
