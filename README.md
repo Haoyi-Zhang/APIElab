@@ -136,3 +136,13 @@ Mutation testing rejects 13,705 selected semantic-certificate mutations, 1,108 u
 - **Source-mapped:** a scholarly pattern was projected into the toy calculus with a stated fidelity limit.
 
 The artifact does not claim proof-assistant assurance, industrial scalability, Android prevalence, detector precision/recall, repair success, human validation, independent peer review, or acceptance. Scholarly projections preserve only a source-motivated pattern.
+
+## Manuscript diagrams
+
+The model and protocol schematics are drawn directly in Python as vector PDFs
+with embedded STIX fonts. They encode the stated relationships, not measured
+performance. To regenerate them with Python 3.9+ and Matplotlib:
+
+```sh
+python -B figures/draw_schematics.py --output figures
+```
