@@ -4,9 +4,7 @@ APIElab-code accompanies **“Uniform Elaboration Across Evolving APIs: Principa
 
 The repository is complete for the declared bounded evidence. It is not a proof-assistant development, Android detector, source-to-source repair system, solver scalability study, or real-app/device benchmark. The asymptotic theorems are ordinary proofs in `proofs/arguments.md`; finite execution checks only the stated families.
 
-OpenAI Codex assisted manuscript drafting and revision, implementation and test
-development, and checking of the ordinary arguments. Reported measurements were
-obtained from the executed artifact workflows.
+Reported measurements were obtained from the executed artifact workflows.
 
 ## Reproduce from a clean extraction
 
