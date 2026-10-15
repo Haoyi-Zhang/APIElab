@@ -22,22 +22,11 @@ It retains raw stdout/stderr, actual command results, current hardware/environme
 
 ```sh
 python -m unittest discover -s tests -v
-python -m compatibility.reproduce --output /tmp/epc-semantic-reproduction
-python -m compatibility.reproduce_succinct --output /tmp/epc-circuit-reproduction
-```
-
-The two output directories must not already exist. The public commands exercise CLI wrappers, which call the campaign functions in the same Python process. Unit tests also call those functions directly and separately check CLI argument parsing. Exclusive creation prevents stale output from being reused. An existing path is never modified; if a fresh run fails after creation, its fresh path and any partial diagnostic output are retained rather than silently removed.
-
-The manuscript's canonical-command presentation uses the following equivalent
-placeholder paths, retained here verbatim for command-level reproduction:
-
-```sh
-python -m unittest discover -s tests -v
 python -m compatibility.reproduce --output OUT-SEMANTIC
 python -m compatibility.reproduce_succinct --output OUT-SUCCINCT
 ```
 
-Run from this artifact root; both placeholder output directories must be new.
+The two output directories must not already exist. The public commands exercise CLI wrappers, which call the campaign functions in the same Python process. Unit tests also call those functions directly and separately check CLI argument parsing. Exclusive creation prevents stale output from being reused. An existing path is never modified; if a fresh run fails after creation, its fresh path and any partial diagnostic output are retained rather than silently removed.
 
 Expected completion conditions:
 
